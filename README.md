@@ -1,4 +1,4 @@
-# Jona Ferreira | Fullstack Engineer
+# Jona Ferreira | Fullstack Developer
 
 Portfólio profissional desenvolvido para demonstrar minha experiência em **Engenharia de Software**, focando em arquiteturas robustas (.NET/Node) e interfaces modernas.
 
