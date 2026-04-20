@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Rajdhani, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
-// 1. Importar a Navbar
 import { Navbar } from "@/components/ui/navbar";
 
 const rajdhani = Rajdhani({ 
