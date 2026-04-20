@@ -9,23 +9,23 @@ export default function About() {
 
       <div className="container max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center pl-0 lg:pl-12">
         
-        <div className="space-y-6">
+       <div className="space-y-6">
           <div className="mb-8">
             <span className="font-mono text-tacticalHighlight text-xs tracking-widest block mb-2 uppercase">/// Bio_Data</span>
             <h2 className="text-3xl md:text-4xl font-bold text-primary uppercase leading-none">
-              Engenharia & <br/> Resolução de Problemas
+              Desenvolvimento & <br/> Resolução de Problemas
             </h2>
           </div>
           
           <div className="text-steel leading-relaxed space-y-4 font-medium border-l-2 border-tacticalHighlight/30 pl-6">
             <p>
-              Estudante de Engenharia de Software na <strong className="text-primary">UFC</strong> e Desenvolvedor Full Stack com uma abordagem pragmática.
+              No último semestre de Engenharia de Software na <strong className="text-primary">UFC</strong>, atuo como Desenvolvedor Full Stack com uma abordagem focada em resolver problemas reais de negócio.
             </p>
             <p>
-              Minha atuação vai além de escrever código novo. Como Freelancer no <strong className="text-primary">Suporte Verde</strong>, sou responsável pela sustentação de sistemas em produção, lidando com <strong>PHP, refatoração de código legado e regras de negócio complexas</strong>.
+              Como Desenvolvedor Frontend na <strong className="text-primary">Kasterweb</strong>, sou responsável por arquitetar, atualizar e corrigir interfaces utilizando React e TypeScript. Minha experiência se estende também ao backend, onde aplico conhecimentos sólidos em C# / .NET para garantir a integridade e performance dos sistemas.
             </p>
             <p>
-              Simultaneamente, construo soluções modernas (como no projeto <strong className="text-primary">Chemall</strong>) utilizando <strong className="text-tacticalHighlight">React, Node.js e .NET</strong>, focando sempre em arquitetura limpa (DDD), performance e experiência do usuário.
+              Essa versatilidade me permite atuar de ponta a ponta: criando interfaces modernas e responsivas com <strong>React e TypeScript</strong>, tudo sustentado por uma base técnica sólida em <strong className="text-tacticalHighlight">C# / .NET</strong> no backend. Aplico essa mesma visão como Líder Técnico do ecossistema <strong className="text-primary">GestLab</strong>, priorizando sempre arquitetura limpa, integridade de dados e performance.
             </p>
           </div>
 
@@ -35,11 +35,11 @@ export default function About() {
                <span className="text-primary block font-bold">Engenharia de Software (UFC)</span>
                <span className="text-steel/50">Téc. Informática (IFCE)</span>
             </div>
-            <div>
+            {/* <div>
                <span className="block text-steel uppercase mb-1">Experiência Atual</span>
                <span className="text-primary block font-bold">Freelancer Full Stack</span>
                <span className="text-steel/50">Suporte Verde / Chemall</span>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -104,8 +104,8 @@ export default function About() {
           </div>
 
           <div className="text-right font-mono text-[10px] text-steel/50 pt-4 border-t border-borderTech">
-            CURRENT_STATUS: OPEN TO WORK <br/>
-            LOCATION: MORADA NOVA, CE
+            CURRENT_STATUS: WORK AT KASTERWEB <br/>
+            {/* LOCATION: MORADA NOVA, CE */}
           </div>
         </div>
 
