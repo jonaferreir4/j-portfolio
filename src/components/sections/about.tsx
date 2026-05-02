@@ -25,7 +25,7 @@ export default function About() {
               Como Desenvolvedor Frontend na <strong className="text-primary">Kasterweb</strong>, sou responsável por arquitetar, atualizar e corrigir interfaces utilizando React e TypeScript. Minha experiência se estende também ao backend, onde aplico conhecimentos sólidos em C# / .NET para garantir a integridade e performance dos sistemas.
             </p>
             <p>
-              Essa versatilidade me permite atuar de ponta a ponta: criando interfaces modernas e responsivas com <strong>React e TypeScript</strong>, tudo sustentado por uma base técnica sólida em <strong className="text-tacticalHighlight">C# / .NET</strong> no backend. Aplico essa mesma visão como Líder Técnico do ecossistema <strong className="text-primary">GestLab</strong>, priorizando sempre arquitetura limpa, integridade de dados e performance.
+              Essa versatilidade me permite atuar de ponta a ponta: criando interfaces modernas e responsivas com <strong>React e TypeScript</strong>, tudo sustentado por uma base técnica sólida em <strong className="text-tacticalHighlight">C# / .NET</strong> no backend. Aplico essa mesma visão como Líder Técnico do ecossistema <strong className="text-primary">GestLLab</strong>, um sistema que está sendo desenvolvido junto ao Projeto de Pesquisa e Extensão Learning Lab,  priorizando sempre arquitetura limpa, integridade de dados e performance.
             </p>
           </div>
 

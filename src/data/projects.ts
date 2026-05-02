@@ -31,11 +31,10 @@ export const projects = [
   },
   {
     id: 3,
-    title: "Next Store",
+    title: "Store GG",
     codeName: "REFACTOR",
     description: "E-commerce de jogos focado em Node.js. Projeto centrado em refatoração, clean code e identificação de code smells.",
-    repoLink: "https://github.com/jonaferreir4/next-store",
-    image: "",
+    repoLink: "https://github.com/csvitor-dev/next-store-gaming",
     color: "from-green-500 to-emerald-600",
     specs: {
       Engine: "Node.js / Next.js",

@@ -62,8 +62,8 @@ export default function Hero() {
           </motion.div>
 
           <div className="flex gap-4 pt-6 text-steel">
-             <a href="https://linkedin.com/in/jonaferreira" className="hover:text-tacticalHighlight transition-colors"><Linkedin size={24} /></a>
-             <a href="https://github.com/jonaferreir4" className="hover:text-tacticalHighlight transition-colors"><Github size={24} /></a>
+             <a href="https://linkedin.com/in/jonaferreira" target="_blank" rel="noopener noreferrer" className="hover:text-tacticalHighlight transition-colors"><Linkedin size={24} /></a>
+             <a href="https://github.com/jonaferreir4" target="_blank" rel="noopener noreferrer" className="hover:text-tacticalHighlight transition-colors"><Github size={24} /></a>
           </div>
         </div>
 
