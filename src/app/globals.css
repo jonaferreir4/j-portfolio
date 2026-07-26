@@ -10,6 +10,7 @@
     --text-steel: #475569;
     --border-tech: #cbd5e1;
     --tactical-highlight: #4f46e5;
+    --grid-color: rgba(53, 56, 238, 0.09);
   }
 
   [data-theme='dark'] {
@@ -19,6 +20,7 @@
     --text-steel: #94a3b8;
     --border-tech: #27272a;
     --tactical-highlight: #6366f1; /* Indigo vibrante */
+    --grid-color: rgba(255, 255, 255, 0.07);
   }
 }
 
@@ -28,13 +30,19 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+@keyframes grid-scroll {
+  0% { background-position: 0px 0px; }
+  100% { background-position: 40px 40px; }
+}
+
 /* GRID DE FUNDO */
 .tactical-grid {
   position: fixed; inset: 0; pointer-events: none; z-index: -1;
   background-size: 40px 40px;
   background-image:
-    linear-gradient(to right, rgba(99, 102, 241, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  animation: grid-scroll 20s linear infinite;
 }
 
 /* Corte nos cantos (Tech Shape) */
@@ -46,4 +54,39 @@ body {
     calc(100% - 15px) 100%, 
     0 100%
   );
+}
+
+/* Spotlight Card Base */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --spotlight-color: rgba(99, 102, 241, 0.08); /* tacticalHighlight with low opacity */
+}
+
+[data-theme='light'] .spotlight-card {
+  --spotlight-color: rgba(99, 102, 241, 0.04);
+}
+
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y),
+    var(--spotlight-color),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
 }

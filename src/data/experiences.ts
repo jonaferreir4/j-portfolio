@@ -1,12 +1,62 @@
-export const experiences = [
-    {
+export interface ProjectLink {
+  label: string;
+  url: string;
+}
+
+export interface Project {
+  name: string;
+  description: string[];
+  links?: ProjectLink[];
+  image?: string;
+}
+
+export interface Experience {
+  id: number;
+  company: string;
+  role: string;
+  period: string;
+  description: string;
+  tech: string[];
+  projects?: Project[];
+}
+
+export const experiences: Experience[] = [
+  {
     id: 1,
     company: "Kasterweb",
     role: "Desenvolvedor Frontend",
-    period: "Fev 2026 - Presente",
-    description: "Responsável por arquitetar, atualizar e realizar a manutenção do ecossistema frontend, com foco na migração técnica e otimização de performance. Atuação na estruturação de interfaces modernas e na evolução constante de sistemas complexos em produção.",
-    tech: ["React", "TypeScript", "Vite", "Shadcn UI", "Tailwind CSS", "React Query", "Zustand"]
-    },
+    period: "Fev 2024 - Presente",
+    description: "Atuo na arquitetura e desenvolvimento de aplicações web escaláveis de ponta a ponta, liderando decisões técnicas focadas em performance, clean architecture e experiência do usuário.",
+    tech: ["React", "Next.js", "TypeScript", "Vite", "Shadcn UI", "Tailwind CSS", "React Query", "Zustand"],
+    projects: [
+      {
+        name: "K-Flow Web (Plataforma CRM e Atendimento)",
+        description: [
+          "Arquitetei o frontend do zero seguindo o padrão Feature-First (Vertical Slice Architecture).",
+          "Construí interface reativa e de alta performance utilizando React 19, TypeScript e Zustand.",
+          "Implementei integrações em tempo real para chat e filas via WebSockets (Laravel Echo + Pusher).",
+          "Padronizei formulários e mutações com TanStack Query, React Hook Form e Zod."
+        ],
+        links: [
+          { label: "Landing Page", url: "https://lpkflow.kasterweb.com.br/" }
+        ],
+        image: "/images/k-flow-preview.png"
+      },
+      {
+        name: "Kastershop (E-commerce Multi-tenant)",
+        description: [
+          "Desenvolvi uma plataforma e-commerce baseada em Next.js (App Router) capaz de servir múltiplos clientes a partir de um único repositório.",
+          "Criei um sistema dinâmico de Design Tokens e injeção de CSS para identidade visual exclusiva por cliente.",
+          "Implementei Server Components para otimizações de SEO e performance."
+        ],
+        links: [
+          { label: "Case: Contra Fogo", url: "https://www.contrafogosolucoes.com.br/" }
+        ],
+        image: "/images/contra-fogo-preview.png"
+      }
+    ]
+  },
+
   {
     id: 3,
     company: "Chemall",
@@ -16,7 +66,7 @@ export const experiences = [
     tech: ["React", "Vite", "Shadcn UI", "TanStack"]
   },
   {
-    id: 2,
+    id: 4,
     company: "Suporte Verde",
     role: "Freelancer Full Stack (PHP)",
     period: "08/2025 - 08/2025",

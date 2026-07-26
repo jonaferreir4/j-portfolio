@@ -1,5 +1,6 @@
 'use client'
 import { motion } from 'framer-motion';
+import { siteConfig } from '@/data/site-config';
 
 export default function About() {
   return (
@@ -10,44 +11,57 @@ export default function About() {
       <div className="container max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center pl-0 lg:pl-12">
         
        <div className="space-y-6">
-          <div className="mb-8">
-            <span className="font-mono text-tacticalHighlight text-xs tracking-widest block mb-2 uppercase">/// Bio_Data</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-primary uppercase leading-none">
-              Desenvolvimento & <br/> Resolução de Problemas
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-8"
+          >
+            <span className="font-mono text-tacticalHighlight text-xs tracking-widest block mb-2 uppercase">{'/// Bio_Data'}</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary uppercase leading-none whitespace-pre-line">
+              {siteConfig.titleBio}
             </h2>
-          </div>
+          </motion.div>
           
-          <div className="text-steel leading-relaxed space-y-4 font-medium border-l-2 border-tacticalHighlight/30 pl-6">
-            <p>
-              No último semestre de Engenharia de Software na <strong className="text-primary">UFC</strong>, atuo como Desenvolvedor Full Stack com uma abordagem focada em resolver problemas reais de negócio.
-            </p>
-            <p>
-              Como Desenvolvedor Frontend na <strong className="text-primary">Kasterweb</strong>, sou responsável por arquitetar, atualizar e corrigir interfaces utilizando React e TypeScript. Minha experiência se estende também ao backend, onde aplico conhecimentos sólidos em C# / .NET para garantir a integridade e performance dos sistemas.
-            </p>
-            <p>
-              Essa versatilidade me permite atuar de ponta a ponta: criando interfaces modernas e responsivas com <strong>React e TypeScript</strong>, tudo sustentado por uma base técnica sólida em <strong className="text-tacticalHighlight">C# / .NET</strong> no backend. Aplico essa mesma visão como Líder Técnico do ecossistema <strong className="text-primary">GestLLab</strong>, um sistema que está sendo desenvolvido junto ao Projeto de Pesquisa e Extensão Learning Lab,  priorizando sempre arquitetura limpa, integridade de dados e performance.
-            </p>
-          </div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-steel leading-relaxed space-y-4 font-medium border-l-2 border-tacticalHighlight/30 pl-6"
+          >
+            {siteConfig.aboutBio.map((paragraph, idx) => (
+              <p key={idx} dangerouslySetInnerHTML={{ __html: paragraph.replace(/\*\*(.*?)\*\*/g, '<strong class="text-primary">$1</strong>').replace(/\*(.*?)\*/g, '<strong class="text-tacticalHighlight">$1</strong>') }} />
+            ))}
+          </motion.div>
 
-          <div className="grid grid-cols-2 gap-4 pt-6 mt-6 border-t border-borderTech font-mono text-xs">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="grid grid-cols-2 gap-4 pt-6 mt-6 border-t border-borderTech font-mono text-xs"
+          >
             <div>
                <span className="block text-steel uppercase mb-1">Formação</span>
                <span className="text-primary block font-bold">Engenharia de Software (UFC)</span>
                <span className="text-steel/50">Téc. Informática (IFCE)</span>
             </div>
-            {/* <div>
-               <span className="block text-steel uppercase mb-1">Experiência Atual</span>
-               <span className="text-primary block font-bold">Freelancer Full Stack</span>
-               <span className="text-steel/50">Suporte Verde / Chemall</span>
-            </div> */}
-          </div>
+          </motion.div>
         </div>
 
-        <div className="relative h-full min-h-[300px] border border-borderTech bg-armor p-6 flex flex-col justify-between clip-tech">
+        <motion.div 
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative h-full min-h-[300px] border border-borderTech bg-armor p-6 flex flex-col justify-between clip-tech hover:border-tacticalHighlight/30 transition-colors duration-300 group"
+        >
           
           <div className="flex justify-between items-start border-b border-borderTech pb-4">
-            <span className="font-mono text-xs text-tacticalHighlight animate-pulse">SKILL_DISTRIBUTION</span>
-            <div className="flex gap-1">
+            <span className="font-mono text-xs text-tacticalHighlight">SKILL_DISTRIBUTION</span>
+            <div className="flex gap-1 group-hover:scale-110 transition-transform duration-300">
               <div className="w-1 h-3 bg-primary"></div>
               <div className="w-1 h-3 bg-primary"></div>
               <div className="w-1 h-3 bg-tacticalHighlight"></div>
@@ -65,7 +79,8 @@ export default function About() {
                     <motion.div 
                         initial={{ width: 0 }} 
                         whileInView={{ width: "90%" }} 
-                        transition={{ duration: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
                         className="h-full bg-tacticalHighlight"
                     />
                 </div>
@@ -80,7 +95,8 @@ export default function About() {
                     <motion.div 
                         initial={{ width: 0 }} 
                         whileInView={{ width: "85%" }} 
-                        transition={{ duration: 1, delay: 0.2 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
                         className="h-full bg-primary"
                     />
                 </div>
@@ -95,7 +111,8 @@ export default function About() {
                     <motion.div 
                         initial={{ width: 0 }} 
                         whileInView={{ width: "75%" }} 
-                        transition={{ duration: 1, delay: 0.4 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
                         className="h-full bg-indigo-900"
                     />
                 </div>
@@ -104,10 +121,9 @@ export default function About() {
           </div>
 
           <div className="text-right font-mono text-[10px] text-steel/50 pt-4 border-t border-borderTech">
-            CURRENT_STATUS: WORK AT KASTERWEB <br/>
-            {/* LOCATION: MORADA NOVA, CE */}
+            CURRENT_STATUS: WORK AT KASTERWEB
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

@@ -7,7 +7,7 @@ import Experience from "@/components/sections/experience";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-void selection:bg-tacticalHighlight selection:text-white">
+    <main className="min-h-screen selection:bg-tacticalHighlight selection:text-white">
       <Hero />
       <About /> 
       <Experience />

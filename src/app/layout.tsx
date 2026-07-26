@@ -3,6 +3,7 @@ import { Rajdhani, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { Navbar } from "@/components/ui/navbar";
+import { TacticalGrid } from "@/components/ui/tactical-grid";
 
 const rajdhani = Rajdhani({ 
   weight: ['400', '500', '600', '700'], 
@@ -27,10 +28,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className={`${rajdhani.variable} ${mono.variable} font-sans bg-void text-primary antialiased overflow-x-hidden selection:bg-tacticalHighlight selection:text-white`}>
+      <body suppressHydrationWarning className={`${rajdhani.variable} ${mono.variable} font-sans bg-void text-primary antialiased overflow-x-hidden selection:bg-tacticalHighlight selection:text-white`}>
         <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false}>
           
-          <div className="tactical-grid"></div>
+          <TacticalGrid />
           
           <Navbar />
           {children}

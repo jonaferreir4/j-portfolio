@@ -35,6 +35,7 @@ export const projects = [
     codeName: "REFACTOR",
     description: "E-commerce de jogos focado em Node.js. Projeto centrado em refatoração, clean code e identificação de code smells.",
     repoLink: "https://github.com/csvitor-dev/next-store-gaming",
+    image: "/images/store-gg.png",
     color: "from-green-500 to-emerald-600",
     specs: {
       Engine: "Node.js / Next.js",
