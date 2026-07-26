@@ -64,7 +64,7 @@ export const experiences: Experience[] = [
     company: "Suporte Verde",
     role: "Freelancer Full Stack (PHP)",
     period: "08/2025 - 08/2025",
-    description: "Atuação em múltiplos projetos comerciais (Ourocargo, Yup Pet, Fenix Sindicatura). Responsável pela manutenção, evolução e refatoração de sistemas web em produção. Entregas principais incluem a implementação de regras de negócio complexas, Controle de Acesso (RBAC) com múltiplos perfis de usuário e refatoração de código legado para melhoria de segurança e performance.",
+    description: "Atuação em múltiplos projetos comerciais atendendo clientes dos setores de logística, e-commerce e gestão de serviços. Responsável pela manutenção, evolução e refatoração de sistemas web em produção. Entregas principais incluem a implementação de regras de negócio complexas, Controle de Acesso (RBAC) com múltiplos perfis de usuário e refatoração de código legado para melhoria de segurança e performance.",
     tech: ["PHP", "HTML", "CSS", "SQL"]
   }
 ];
