@@ -30,29 +30,23 @@ export const experiences: Experience[] = [
     tech: ["React", "Next.js", "TypeScript", "Vite", "Shadcn UI", "Tailwind CSS", "React Query", "Zustand"],
     projects: [
       {
-        name: "K-Flow Web (Plataforma CRM e Atendimento)",
+        name: "Plataforma CRM e Atendimento Multicanal",
         description: [
           "Arquitetei o frontend do zero seguindo o padrão Feature-First (Vertical Slice Architecture).",
           "Construí interface reativa e de alta performance utilizando React 19, TypeScript e Zustand.",
           "Implementei integrações em tempo real para chat e filas via WebSockets (Laravel Echo + Pusher).",
           "Padronizei formulários e mutações com TanStack Query, React Hook Form e Zod."
         ],
-        links: [
-          { label: "Landing Page", url: "https://lpkflow.kasterweb.com.br/" }
-        ],
-        image: "/images/k-flow-preview.png"
+        image: "/images/crm-preview.png"
       },
       {
-        name: "Kastershop (E-commerce Multi-tenant)",
+        name: "Plataforma E-commerce Multi-tenant",
         description: [
-          "Desenvolvi uma plataforma e-commerce baseada em Next.js (App Router) capaz de servir múltiplos clientes a partir de um único repositório.",
-          "Criei um sistema dinâmico de Design Tokens e injeção de CSS para identidade visual exclusiva por cliente.",
+          "Desenvolvi uma plataforma e-commerce baseada em Next.js (App Router) capaz de servir múltiplos clientes de setores como segurança contra incêndio e suprimentos industriais a partir de um único repositório.",
+          "Implementei arquitetura de theming dinâmico e gestão de design tokens para suporte a personalização de identidade visual por tenant.",
           "Implementei Server Components para otimizações de SEO e performance."
         ],
-        links: [
-          { label: "Case: Contra Fogo", url: "https://www.contrafogosolucoes.com.br/" }
-        ],
-        image: "/images/contra-fogo-preview.png"
+        image: "/images/ecommerce-preview.png"
       }
     ]
   },
