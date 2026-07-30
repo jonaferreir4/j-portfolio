@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { Rajdhani, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { ClickBreakerProvider } from "@/providers/ClickBreakerProvider";
 import { Navbar } from "@/components/ui/navbar";
 import { TacticalGrid } from "@/components/ui/tactical-grid";
+import { RobotDebugger } from "@/components/ui/RobotDebugger";
 
 const rajdhani = Rajdhani({ 
   weight: ['400', '500', '600', '700'], 
@@ -30,11 +32,12 @@ export default function RootLayout({
     <html lang="pt-BR" suppressHydrationWarning>
       <body suppressHydrationWarning className={`${rajdhani.variable} ${mono.variable} font-sans bg-void text-primary antialiased overflow-x-hidden selection:bg-tacticalHighlight selection:text-white`}>
         <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false}>
-          
-          <TacticalGrid />
-          
-          <Navbar />
-          {children}
+          <ClickBreakerProvider>
+            <TacticalGrid />
+            <Navbar />
+            {children}
+            <RobotDebugger />
+          </ClickBreakerProvider>
         </ThemeProvider>
       </body>
     </html>
