@@ -5,7 +5,12 @@ import Image from 'next/image';
 import Me from '@/assets/images/me-professional.jpeg';
 import { siteConfig } from '@/data/site-config';
 
+import { HeroTitleRobot } from '@/components/ui/HeroTitleRobot';
+import { useClickBreaker } from '@/providers/ClickBreakerProvider';
+
 export default function Hero() {
+  const { isSocialIconsPlaced } = useClickBreaker();
+
   return (
     <section id="home" className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-12 px-6 lg:px-12 bg-transparent border-b border-borderTech overflow-hidden">
       
@@ -18,29 +23,7 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <motion.div
-               initial={{ opacity: 0, y: 10 }}
-               animate={{ opacity: 1, y: 0 }}
-               className="inline-flex items-center gap-3 px-4 py-2 bg-armor border border-borderTech rounded-full w-fit"
-            >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-tacticalHighlight opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-tacticalHighlight"></span>
-                </span>
-                <span className="text-xs font-bold text-steel uppercase tracking-wider">Disponível para Projetos</span>
-            </motion.div>
-            
-            <motion.h1 
-              initial={{ opacity: 0, filter: 'blur(10px)', y: 20 }}
-              animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-              transition={{ delay: 0.1, duration: 0.7, ease: "easeOut" }}
-              className="text-5xl md:text-7xl font-bold text-primary leading-[1.1] tracking-tight"
-            >
-              {siteConfig.role.split(' ')[0]} <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-tacticalHighlight to-indigo-400">
-              {siteConfig.role.split(' ')[1] || ''}
-              </span>
-            </motion.h1>
+            <HeroTitleRobot />
 
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
@@ -65,9 +48,17 @@ export default function Hero() {
               </a>
             </motion.div>
 
-            <div className="flex gap-4 pt-6 text-steel">
+            {/* Social links initially hidden, revealed when robot places them! */}
+            <div 
+              id="hero-social-links" 
+              className={`flex gap-4 pt-6 text-steel transition-all duration-500 ${
+                isSocialIconsPlaced 
+                  ? 'opacity-100 scale-100' 
+                  : 'opacity-0 scale-95 pointer-events-none'
+              }`}
+            >
                <a href={siteConfig.links.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-tacticalHighlight transition-colors"><Linkedin size={24} /></a>
-               <a href={siteConfig.links.github} target="_blank" rel="noopener noreferrer" className="hover:text-tacticalHighlight transition-colors"><Github size={24} /></a>
+               <a id="hero-github-link" href={siteConfig.links.github} target="_blank" rel="noopener noreferrer" className="hover:text-tacticalHighlight transition-colors relative"><Github size={24} /></a>
             </div>
 
           </motion.div>
@@ -114,4 +105,3 @@ export default function Hero() {
     </section>
   );
 }
-
