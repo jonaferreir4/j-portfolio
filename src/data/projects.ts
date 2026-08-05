@@ -6,7 +6,7 @@ export interface ProjectItem {
   description: string;
   repoLink?: string;
   image?: string;
-  previewType?: 'kanban' | 'microservice' | 'websocket' | 'proxy' | 'default';
+  previewType?: 'kanban' | 'microservice' | 'websocket' | 'proxy' | 'events' | 'default';
   color: string;
   specs: Record<string, string>;
 }
@@ -25,7 +25,7 @@ export const projects: ProjectItem[] = [
       Engine: "React + Vite",
       Transmission: "Zustand",
       Torque: "React Query",
-      Chassis: "Styled Components"
+      Chassis: "Shadcn UI"
     }
   },
   {
@@ -90,6 +90,22 @@ export const projects: ProjectItem[] = [
       Container: "Docker Compose",
       Network: "Bridge Mode",
       Language: ".NET Core"
+    }
+  },
+  {
+    id: 6,
+    slug: "myevents",
+    title: "MyEvents",
+    codeName: "EVENT ENGINE",
+    description: "Sistema para gerenciamento de eventos acadêmicos: criação, inscrições e emissão automatizada de certificados com Clean Architecture e JWT em C#/.NET.",
+    repoLink: "https://github.com/jonaferreir4/MyEvents",
+    previewType: "events",
+    color: "from-purple-600 to-indigo-600",
+    specs: {
+      Engine: "C# / .NET Core",
+      Structure: "Clean Architecture",
+      ORM: "EntityFramework",
+      Database: "PostgreSQL"
     }
   }
 ];

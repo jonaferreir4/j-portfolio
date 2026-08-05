@@ -1,15 +1,16 @@
 export const siteConfig = {
   name: "Jona Ferreira",
-  role: "Fullstack Developer.",
+  role: "Fullstack Developer (React/Next & .NET)",
   titleBio: "Desenvolvimento &\nResolução de Problemas",
-  heroBio: "Olá, sou **Jona Ferreira**. Desenvolvo aplicações de alta complexidade com **.NET**, **Node.js** e **React**. Especialista em unir arquitetura limpa com a realidade de sistemas em produção, seja criando do zero ou refatorando legados.",
+  heroBio: "Olá, sou **Jona Ferreira**. Desenvolvo aplicações web escaláveis com **React 19**, **Next.js 16**, **TypeScript**, **.NET Core** e **Node.js**. Atuo como responsável técnico na **Kasterweb** liderando padrões de arquitetura (Feature-First) e unindo excelência em frontend com robustez em backend.",
   aboutBio: [
-    "No último semestre de Engenharia de Software na **UFC**, atuo como Desenvolvedor Full Stack com uma abordagem focada em resolver problemas reais de negócio.",
-    "Como Desenvolvedor Frontend na **Kasterweb**, sou responsável por arquitetar, atualizar e corrigir interfaces utilizando React e TypeScript. Minha experiência se estende também ao backend, onde aplico conhecimentos sólidos em C# / .NET para garantir a integridade e performance dos sistemas.",
-    "Essa versatilidade me permite atuar de ponta a ponta: criando interfaces modernas e responsivas com **React e TypeScript**, tudo sustentado por uma base técnica sólida em **C# / .NET** no backend. Aplico essa mesma visão como Líder Técnico do ecossistema **GestLLab**, um sistema que está sendo desenvolvido junto ao Projeto de Pesquisa e Extensão Learning Lab, priorizando sempre arquitetura limpa, integridade de dados e performance."
+    "Engenharia de Software na **UFC** (formação Dez/2026), atuo como Desenvolvedor Full Stack e Responsável Técnico com forte foco em arquitetura de software e entrega de valor real em produção.",
+    "Na **Kasterweb**, arquiteto o ecossistema frontend com **React 19, Next.js (App Router)** e **Tailwind CSS v4**, aplicando o padrão Feature-First (Vertical Slice) e desenvolvendo soluções avançadas como plataformas *white-label multi-tenant* com tokens em espaço OKLCH e integrações em tempo real.",
+    "Possuo sólida base técnica em backend com **C# / .NET Core, Node.js (Express & APIs REST)**, **Clean Architecture, WebSockets e SQL**, além de atuar como Líder Técnico do projeto de extensão **GestLab** na UFC. Integração contínua de ferramentas de IA (GitHub Copilot, ChatGPT, Claude) para otimização de workflow, análise de código e cobertura de testes."
   ],
   status: "Open to Work",
   links: {
+    email: "jonaferreira.dev@gmail.com",
     github: "https://github.com/jonaferreir4",
     linkedin: "https://linkedin.com/in/jonaferreira",
     cv: "/docs/curriculo.pdf"
@@ -18,6 +19,7 @@ export const siteConfig = {
     username: "jonaferreir4",
     pinnedRepos: [
       "GestLab",
+      "MyEvents",
       "Dialogue",
       "email-service",
       "Smaller",

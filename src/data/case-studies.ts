@@ -32,7 +32,7 @@ export interface CaseStudy {
     detail: string;
   }[];
   diagram: {
-    type: 'kanban' | 'microservice' | 'websocket' | 'proxy' | 'ecommerce';
+    type: 'kanban' | 'microservice' | 'websocket' | 'proxy' | 'ecommerce' | 'events';
     nodes: { label: string; sub?: string; highlight?: boolean }[];
     flowDescription: string;
   };
@@ -348,5 +348,67 @@ export const caseStudies: Record<string, CaseStudy> = {
       flowDescription: "Incoming Web Request -> Traefik Edge -> Label Routing -> .NET URL Resolver -> Instant 301 Redirect"
     },
     stack: ["Traefik", "Docker", "Docker Compose", ".NET Core", "C#", "Linux"]
+  },
+
+  myevents: {
+    slug: "myevents",
+    projectId: 6,
+    title: "MyEvents",
+    codeName: "EVENT ENGINE",
+    role: "Backend Architect & .NET Developer",
+    period: "2025",
+    category: "Gerenciamento de Eventos Acadêmicos",
+    summary: "Plataforma para gerenciamento completo de eventos acadêmicos, incluindo criação de eventos, controle de inscrições e geração/emissão automatizada de certificados com autenticação JWT e Clean Architecture.",
+    repoLink: "https://github.com/jonaferreir4/MyEvents",
+    specs: {
+      Engine: "C# / .NET Core",
+      Structure: "Clean Architecture & Unit of Work",
+      Validation: "FluentValidation + FluentMigration",
+      Database: "PostgreSQL / Entity Framework"
+    },
+    problem: {
+      context: "Organização de eventos acadêmicos frequentemente enfrenta gargalos no credenciamento, controle de vagas por atividade e morosidade na emissão de certificados válidos para os participantes.",
+      challenges: [
+        "Garantir concorrência segura no limite de inscrições por oficina/palestra.",
+        "Implementar emissão automatizada e autêntica de certificados com token de verificação.",
+        "Manter código altamente testável desacoplando regras de negócio do banco de dados."
+      ]
+    },
+    architecture: {
+      overview: "Desenvolvido em C# ASP.NET Core seguindo os princípios de Clean Architecture (Domain, Application, Infrastructure, WebAPI), utilizando Entity Framework Core com PostgreSQL, FluentValidation para validações de contrato e FluentMigration para versionamento de esquema.",
+      keyDecisions: [
+        {
+          title: "Clean Architecture + Unit of Work",
+          description: "Desacoplamento das entidades de domínio e regras de negócio da camada de persistência, garantindo atomicidade em transações de inscrição."
+        },
+        {
+          title: "FluentValidation & Middleware de Exceção",
+          description: "Centralização do tratamento de inconsistências de dados antes de atingir os serviços da aplicação, retornando respostas padronizadas."
+        }
+      ]
+    },
+    tradeoffs: [
+      {
+        decision: "Clean Architecture em camadas vs Desenvolvimento em controller direto (CRUD simples)",
+        reason: "Embora adicione mais arquivos e interfaces, garante que o sistema de eventos possa evoluir para microsserviços ou suporte a pagamento sem reescrever o domínio.",
+        downside: "Ligeiro aumento de código boilerplate inicial para entidades simples."
+      }
+    ],
+    results: [
+      { metric: "100%", label: "Automação", detail: "Geração instantânea de certificados em PDF" },
+      { metric: "Zero", label: "Inscrições Duplicadas", detail: "Transações atômicas com Unit of Work" },
+      { metric: "Clean", label: "Arquitetura", detail: "Camadas isoladas e altamente testáveis" }
+    ],
+    diagram: {
+      type: "events",
+      nodes: [
+        { label: "WebAPI / REST Gateway", sub: "JWT Auth & Endpoints" },
+        { label: "Application Layer", sub: "FluentValidation & Handlers", highlight: true },
+        { label: "Domain & Unit of Work", sub: "Business Rules & Transaction Scope" },
+        { label: "PostgreSQL Database", sub: "EntityFramework Core + Migrations" }
+      ],
+      flowDescription: "HTTP Request -> JWT Auth Filter -> FluentValidation -> Unit of Work Transaction -> PostgreSQL Commit -> Certificate Generation"
+    },
+    stack: ["C#", ".NET Core", "ASP.NET Core", "EntityFramework", "PostgreSQL", "JWT", "Clean Architecture", "FluentValidation"]
   }
 };

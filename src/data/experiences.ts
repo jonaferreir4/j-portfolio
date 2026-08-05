@@ -25,26 +25,38 @@ export const experiences: Experience[] = [
     id: 1,
     company: "Kasterweb",
     role: "Desenvolvedor Frontend",
-    period: "Fev 2024 - Presente",
-    description: "Atuo na arquitetura e desenvolvimento de aplicações web escaláveis de ponta a ponta, liderando decisões técnicas focadas em performance, clean architecture e experiência do usuário.",
-    tech: ["React", "Next.js", "TypeScript", "Vite", "Shadcn UI", "Tailwind CSS", "React Query", "Zustand"],
+    period: "Fev 2026 - Presente",
+    description: "Responsável técnico pela arquitetura e modernização do ecossistema frontend dos dois principais produtos da empresa (React/Next.js). Liderança em decisões técnicas de engenharia, performance, arquitetura Feature-First e integração de IA no workflow.",
+    tech: [
+      "React 19",
+      "Next.js 16 (App Router)",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS v4",
+      "Shadcn UI",
+      "TanStack Query",
+      "Zustand",
+      "React Hook Form",
+      "Zod",
+      "Axios",
+      "WebSockets (Pusher / Laravel Echo)"
+    ],
     projects: [
       {
-        name: "Plataforma CRM e Atendimento Multicanal",
+        name: "Arquitetura Feature-First & Padrões de Engenharia",
         description: [
-          "Arquitetei o frontend do zero seguindo o padrão Feature-First (Vertical Slice Architecture).",
-          "Construí interface reativa e de alta performance utilizando React 19, TypeScript e Zustand.",
-          "Implementei integrações em tempo real para chat e filas via WebSockets (Laravel Echo + Pusher).",
-          "Padronizei formulários e mutações com TanStack Query, React Hook Form e Zod."
+          "Defini e documentei os padrões de arquitetura Feature-First (Vertical Slice) e as regras de engenharia do time (tipagem estrita, cobertura de testes, convenções e segurança), usadas como referência por todo o time e por IAs no fluxo de desenvolvimento.",
+          "Implementei ErrorBoundary nos pontos críticos da aplicação e padronizei autenticação segura (interceptors, cookies SameSite=Strict e Secure).",
+          "Corrigi bug crítico de race condition no fluxo de aceite de tickets, implementando navegação por URL (deep-link de modais) replicado em todo o sistema."
         ],
         image: "/images/crm-preview.png"
       },
       {
-        name: "Plataforma E-commerce Multi-tenant",
+        name: "Plataforma White-label Multi-tenant (Kastershop)",
         description: [
-          "Desenvolvi uma plataforma e-commerce baseada em Next.js (App Router) capaz de servir múltiplos clientes de setores como segurança contra incêndio e suprimentos industriais a partir de um único repositório.",
-          "Implementei arquitetura de theming dinâmico e gestão de design tokens para suporte a personalização de identidade visual por tenant.",
-          "Implementei Server Components para otimizações de SEO e performance."
+          "Arquitetei o sistema white-label multi-tenant do Kastershop em Next.js (App Router), permitindo que um único codebase atenda múltiplos clientes via resolução de tenant por domínio.",
+          "Implementei injeção dinâmica de design tokens com conversão de cores no espaço OKLCH e herança de configuração entre clientes.",
+          "Colaborei ativamente no desenho de contratos de API REST com backend em Laravel (formato de resposta e paginação cursor-based)."
         ],
         image: "/images/ecommerce-preview.png"
       }
@@ -54,17 +66,17 @@ export const experiences: Experience[] = [
   {
     id: 3,
     company: "Chemall",
-    role: "Desenvolvedor Freelance",
-    period: "12/2025 - 12/2025",
-    description: "Desenvolvimento de solução frontend sob medida para cliente. Foco no levantamento de requisitos e implementação de funcionalidades estritamente alinhadas às regras de negócio da empresa.",
+    role: "Desenvolvedor Freelance (Frontend)",
+    period: "2025 - 2025",
+    description: "Parceria em projeto acadêmico de pós-graduação: desenvolvimento remunerado da solução frontend de e-commerce de produtos químicos. Levantamento de requisitos e implementação alinhada a regras de negócio complexas.",
     tech: ["React", "Vite", "Shadcn UI", "TanStack"]
   },
   {
     id: 4,
     company: "Suporte Verde",
     role: "Freelancer Full Stack (PHP)",
-    period: "08/2025 - 08/2025",
-    description: "Atuação em múltiplos projetos comerciais atendendo clientes dos setores de logística, e-commerce e gestão de serviços. Responsável pela manutenção, evolução e refatoração de sistemas web em produção. Entregas principais incluem a implementação de regras de negócio complexas, Controle de Acesso (RBAC) com múltiplos perfis de usuário e refatoração de código legado para melhoria de segurança e performance.",
+    period: "Ago 2025 - Ago 2025",
+    description: "Atuação em múltiplos projetos comerciais (Ourocargo, Yup Pet, Fenix Sindicatura) durante período de férias acadêmicas. Manutenção, evolução e refatoração de sistemas web em produção, implementação de Controle de Acesso (RBAC) com múltiplos perfis e otimização de segurança/performance de código legado.",
     tech: ["PHP", "HTML", "CSS", "SQL"]
   }
 ];

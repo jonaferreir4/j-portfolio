@@ -4,11 +4,42 @@ import React from 'react';
 
 interface TacticalProjectPreviewProps {
   codeName: string;
-  type?: 'kanban' | 'microservice' | 'websocket' | 'proxy' | 'ecommerce' | 'default';
+  type?: 'kanban' | 'microservice' | 'websocket' | 'proxy' | 'ecommerce' | 'events' | 'default';
   title: string;
 }
 
 export function TacticalProjectPreview({ codeName, type = 'default', title }: TacticalProjectPreviewProps) {
+  if (type === 'events') {
+    return (
+      <div className="w-full h-full min-h-[200px] bg-slate-950 p-4 font-mono text-xs flex flex-col justify-between border border-borderTech/40 relative overflow-hidden select-none group/preview">
+        <div className="absolute inset-0 bg-[radial-gradient(#a855f7_1px,transparent_1px)] [background-size:12px_12px] opacity-15"></div>
+
+        <div className="flex justify-between items-center z-10 border-b border-purple-500/20 pb-2">
+          <span className="text-[10px] text-purple-400 font-bold tracking-wider uppercase">
+            /// CLEAN_ARCH // MYEVENTS_ENGINE
+          </span>
+          <span className="text-[9px] text-purple-300 font-bold">JWT_AUTH: ACTIVE</span>
+        </div>
+
+        <div className="z-10 my-auto space-y-2">
+          <div className="flex items-center justify-between text-[9px] bg-slate-900 p-2 border border-slate-800 rounded">
+            <span className="text-purple-400 font-bold">UNIT OF WORK</span>
+            <span className="text-slate-300">Atomic Transactions</span>
+          </div>
+          <div className="flex items-center justify-between text-[9px] bg-purple-950/40 p-2 border border-purple-500/30 rounded text-purple-200">
+            <span className="text-white font-bold">CERTIFICATES</span>
+            <span className="text-purple-300 font-bold">100% AUTOMATED</span>
+          </div>
+        </div>
+
+        <div className="flex justify-between items-center text-[9px] z-10 text-slate-500 border-t border-slate-800 pt-2">
+          <span>POSTGRESQL + EF CORE</span>
+          <span className="text-purple-400 font-bold">FLUENT VALIDATION</span>
+        </div>
+      </div>
+    );
+  }
+
   if (type === 'kanban') {
     return (
       <div className="w-full h-full min-h-[200px] bg-slate-950 p-4 font-mono text-xs flex flex-col justify-between border border-borderTech/40 relative overflow-hidden select-none group/preview">

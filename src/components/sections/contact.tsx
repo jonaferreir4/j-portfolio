@@ -39,14 +39,51 @@ export default function Contact() {
 
     setStatus('submitting');
     try {
-      // Simulate server action or backend contact handler latency
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      setStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      const apiKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || '';
+
+      if (!apiKey) {
+        // Fallback para envio direto via mailto se a chave ainda não foi inserida no .env.local
+        const mailtoUrl = `mailto:${siteConfig.links.email || 'jonaferreira.dev@gmail.com'}?subject=${encodeURIComponent(
+          formData.subject || `Contato de ${formData.name}`
+        )}&body=${encodeURIComponent(
+          `Nome: ${formData.name}\nE-mail: ${formData.email}\n\nMensagem:\n${formData.message}`
+        )}`;
+        window.location.href = mailtoUrl;
+        setStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        return;
+      }
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: apiKey,
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || `Oportunidade / Contato de ${formData.name}`,
+          message: formData.message,
+          from_name: 'Portfólio Jona Ferreira'
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        throw new Error(result.message || 'Falha ao enviar e-mail.');
+      }
     } catch (err) {
       console.error(err);
       setStatus('error');
-      setErrorMessage('Falha ao enviar mensagem. Tente novamente ou use o e-mail direto.');
+      setErrorMessage(
+        'Erro na transmissão via API. Clique no botão de fallback para enviar diretamente via seu cliente de e-mail.'
+      );
     }
   };
 
