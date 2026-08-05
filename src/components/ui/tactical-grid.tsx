@@ -87,9 +87,13 @@ export function TacticalGrid() {
 
     // Mark nodes near impact as severed
     const triggerBreakPhysics = () => {
+      if (!impactRef.current) return;
       const scrollOffset = window.scrollY * 0.15;
-      const ix = impactRef.current ? impactRef.current.x : width / 2;
-      const iy = impactRef.current ? impactRef.current.y + scrollOffset : height / 2;
+      const clientX = impactRef.current.clientX ?? impactRef.current.x;
+      const clientY = impactRef.current.clientY ?? (impactRef.current.y - window.scrollY);
+
+      const ix = clientX;
+      const iy = clientY + scrollOffset;
 
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
@@ -217,10 +221,6 @@ export function TacticalGrid() {
   return (
     <div
       className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden"
-      style={{
-        maskImage: 'radial-gradient(circle at center, black, transparent 80%)',
-        WebkitMaskImage: 'radial-gradient(circle at center, black, transparent 80%)',
-      }}
     >
       <canvas
         ref={canvasRef}

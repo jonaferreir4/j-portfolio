@@ -1,20 +1,24 @@
-'use client'
+'use client';
+
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Linkedin, Github } from 'lucide-react';
+import { ArrowRight, Download, Linkedin, Github, Cpu } from 'lucide-react';
 import Image from 'next/image';
 import Me from '@/assets/images/me-professional.jpeg';
 import { siteConfig } from '@/data/site-config';
-
 import { HeroTitleRobot } from '@/components/ui/HeroTitleRobot';
 import { useClickBreaker } from '@/providers/ClickBreakerProvider';
+import { parseFormattedText } from '@/utils/text-parser';
 
 export default function Hero() {
   const { isSocialIconsPlaced } = useClickBreaker();
 
   return (
-    <section id="home" className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-12 px-6 lg:px-12 bg-transparent border-b border-borderTech overflow-hidden">
-      
-      <div className="container max-w-5xl mx-auto relative z-10">
+    <section 
+      id="home" 
+      aria-labelledby="hero-title"
+      className="relative min-h-[90vh] flex flex-col justify-between pt-24 pb-8 px-6 lg:px-12 bg-transparent border-b border-borderTech overflow-hidden"
+    >
+      <div className="container max-w-5xl mx-auto relative z-10 my-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
         
           <motion.div 
@@ -30,8 +34,9 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
               className="text-lg md:text-xl text-steel max-w-xl leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: siteConfig.heroBio.replace(/\*\*(.*?)\*\*/g, '<strong class="text-primary">$1</strong>') }}
-            />
+            >
+              {parseFormattedText(siteConfig.heroBio)}
+            </motion.p>
 
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -39,11 +44,21 @@ export default function Hero() {
               transition={{ delay: 0.4, duration: 0.5 }}
               className="flex flex-wrap gap-4 pt-4"
             >
-              <a href="#contact" className="px-8 py-3.5 bg-tacticalHighlight text-white font-bold rounded-sm hover:bg-indigo-600 hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(99,102,241,0.4)] transition-all duration-300 flex items-center gap-2">
+              <a 
+                href="#contact" 
+                className="px-8 py-3.5 bg-tacticalHighlight text-white font-bold rounded-sm hover:bg-indigo-600 hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(99,102,241,0.4)] transition-all duration-300 flex items-center gap-2"
+                aria-label="Ir para seção de contato com Jona Ferreira"
+              >
                  Entrar em Contato <ArrowRight size={18} />
               </a>
               
-              <a href={siteConfig.links.cv} target="_blank" className="px-8 py-3.5 border border-borderTech bg-armor text-primary font-medium rounded-sm hover:border-tacticalHighlight hover:text-tacticalHighlight hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(99,102,241,0.1)] transition-all duration-300 flex items-center gap-2">
+              <a 
+                href={siteConfig.links.cv} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="px-8 py-3.5 border border-borderTech bg-armor text-primary font-medium rounded-sm hover:border-tacticalHighlight hover:text-tacticalHighlight hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(99,102,241,0.1)] transition-all duration-300 flex items-center gap-2"
+                aria-label="Baixar currículo PDF de Jona Ferreira"
+              >
                 <Download size={18} /> Download CV
               </a>
             </motion.div>
@@ -57,8 +72,25 @@ export default function Hero() {
                   : 'opacity-0 scale-95 pointer-events-none'
               }`}
             >
-               <a href={siteConfig.links.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-tacticalHighlight transition-colors"><Linkedin size={24} /></a>
-               <a id="hero-github-link" href={siteConfig.links.github} target="_blank" rel="noopener noreferrer" className="hover:text-tacticalHighlight transition-colors relative"><Github size={24} /></a>
+               <a 
+                href={siteConfig.links.linkedin} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-tacticalHighlight transition-colors"
+                aria-label="Perfil no LinkedIn de Jona Ferreira"
+               >
+                <Linkedin size={24} />
+               </a>
+               <a 
+                id="hero-github-link" 
+                href={siteConfig.links.github} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-tacticalHighlight transition-colors relative"
+                aria-label="Perfil no GitHub de Jona Ferreira"
+               >
+                <Github size={24} />
+               </a>
             </div>
 
           </motion.div>
@@ -69,7 +101,7 @@ export default function Hero() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="relative flex justify-center lg:justify-end"
           >
-            <div className="relative w-[350px] h-[420px]">
+            <div className="relative w-[320px] sm:w-[350px] h-[390px] sm:h-[420px]">
                 <div className="absolute top-4 right-4 w-full h-full border-2 border-borderTech/50 rounded-sm"></div>
 
                 <div className="relative w-full h-full bg-armor border border-borderTech p-3 shadow-2xl group">
@@ -80,6 +112,7 @@ export default function Hero() {
                           src={Me}
                           alt={siteConfig.name}
                           fill
+                          sizes="(max-width: 768px) 100vw, 350px"
                           className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                           priority
                         />
@@ -102,6 +135,36 @@ export default function Hero() {
 
         </div>
       </div>
+
+      {/* TACTICAL HUD METRICS BAR ANCHORED AT BOTTOM OF HERO */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6, duration: 0.5 }}
+        className="container max-w-5xl mx-auto pt-10 mt-auto z-10"
+      >
+        <div className="grid grid-cols-2 gap-4 p-4 bg-armor/80 backdrop-blur-md border border-borderTech clip-tech font-mono text-xs shadow-lg">
+          <div className="flex items-center gap-3 border-r border-borderTech/60 pr-2">
+            <div className="p-2 bg-tacticalHighlight/10 text-tacticalHighlight rounded-sm">
+              <Cpu size={18} />
+            </div>
+            <div>
+              <span className="block text-steel text-[10px] uppercase">STACK CORE</span>
+              <span className="text-primary font-bold text-sm">.NET • REACT • NODE</span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-tacticalHighlight/10 text-tacticalHighlight rounded-sm">
+              <span className="font-extrabold text-tacticalHighlight text-xs">UFC</span>
+            </div>
+            <div>
+              <span className="block text-steel text-[10px] uppercase">FORMAÇÃO</span>
+              <span className="text-primary font-bold text-sm">ENG. SOFTWARE</span>
+            </div>
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 }

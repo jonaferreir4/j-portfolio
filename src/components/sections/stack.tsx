@@ -4,10 +4,10 @@ import { technologies } from '@/data/stack';
 
 export default function Stack() {
   return (
-    <section id="stack" className="py-24 px-6 bg-armor border-b border-borderTech">
+    <section id="stack" className="py-24 px-6 bg-transparent border-b border-borderTech">
       <div className="container max-w-6xl mx-auto">
         
-        <div className="mb-16 text-center md:text-left">
+        <div className="mb-16 text-center md:text-left bg-void/90 p-6 sm:p-8 rounded-sm border border-borderTech backdrop-blur-sm max-w-3xl">
           <span className="font-mono text-tacticalHighlight text-sm font-bold uppercase tracking-widest mb-2 block">
             Arsenal Técnico
           </span>

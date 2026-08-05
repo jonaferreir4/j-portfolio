@@ -1,11 +1,25 @@
-export const projects = [
+export interface ProjectItem {
+  id: number;
+  slug: string;
+  title: string;
+  codeName: string;
+  description: string;
+  repoLink?: string;
+  image?: string;
+  previewType?: 'kanban' | 'microservice' | 'websocket' | 'proxy' | 'default';
+  color: string;
+  specs: Record<string, string>;
+}
+
+export const projects: ProjectItem[] = [
   {
     id: 1,
+    slug: "gestlab",
     title: "GestLab",
     codeName: "THE ORGANIZER",
-    description: "Plataforma de gestão visual (Kanban) focada em UX. Utiliza React Query para cache e estado global otimizado.",
+    description: "Plataforma de gestão visual (Kanban) focada em UX. Utiliza React 19, Zustand e TanStack Query para cache e estado otimizado.",
     repoLink: "https://github.com/jonaferreir4/GestLab",
-    image: "",
+    previewType: "kanban",
     color: "from-blue-600 to-cyan-500",
     specs: {
       Engine: "React + Vite",
@@ -16,11 +30,12 @@ export const projects = [
   },
   {
     id: 2,
+    slug: "email-service",
     title: "Email Service",
     codeName: "CLOUD RUNNER",
-    description: "Microsserviço transacional isolado em Java. Alta capacidade de entrega com AWS SES.",
+    description: "Microsserviço transacional isolado em Java Spring Boot. Alta capacidade de entrega resiliente com AWS SES.",
     repoLink: "https://github.com/jonaferreir4/email-service",
-    image: "",
+    previewType: "microservice",
     color: "from-orange-500 to-red-600",
     specs: {
       Engine: "Java Spring Boot",
@@ -31,9 +46,10 @@ export const projects = [
   },
   {
     id: 3,
+    slug: "store-gg",
     title: "Store GG",
     codeName: "REFACTOR",
-    description: "E-commerce de jogos focado em Node.js. Projeto centrado em refatoração, clean code e identificação de code smells.",
+    description: "E-commerce de jogos focado em Node.js & Next.js App Router. Projeto centrado em refatoração, clean code e eliminando code smells.",
     repoLink: "https://github.com/csvitor-dev/next-store-gaming",
     image: "/images/store-gg.png",
     color: "from-green-500 to-emerald-600",
@@ -46,11 +62,12 @@ export const projects = [
   },
   {
     id: 4,
+    slug: "dialogue",
     title: "Dialogue",
     codeName: "SPEEDSTER",
-    description: "Chat em tempo real com baixa latência e Websockets, suportando alta concorrência de usuários.",
+    description: "Chat em tempo real com baixa latência e WebSockets duplex via .NET 8 SignalR, suportando alta concorrência.",
     repoLink: "https://github.com/jonaferreir4/Dialogue",
-    image: "",
+    previewType: "websocket",
     color: "from-emerald-500 to-green-600",
     specs: {
       Engine: ".NET / SignalR",
@@ -61,11 +78,12 @@ export const projects = [
   },
   {
     id: 5,
+    slug: "smaller",
     title: "Smaller",
     codeName: "INFRA PRO",
-    description: "Encurtador de URL focado em infraestrutura, utilizando Proxy Reverso para comunicação segura.",
+    description: "Encurtador de URL de alta velocidade focado em infraestrutura, utilizando Traefik como Proxy Reverso.",
     repoLink: "https://github.com/jonaferreir4/Smaller",
-    image: "",
+    previewType: "proxy",
     color: "from-slate-600 to-slate-800",
     specs: {
       Engine: "Traefik (Proxy)",
@@ -75,5 +93,3 @@ export const projects = [
     }
   }
 ];
-
-

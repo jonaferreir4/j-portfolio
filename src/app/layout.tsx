@@ -6,6 +6,7 @@ import { ClickBreakerProvider } from "@/providers/ClickBreakerProvider";
 import { Navbar } from "@/components/ui/navbar";
 import { TacticalGrid } from "@/components/ui/tactical-grid";
 import { RobotDebugger } from "@/components/ui/RobotDebugger";
+import { siteConfig } from "@/data/site-config";
 
 const rajdhani = Rajdhani({ 
   weight: ['400', '500', '600', '700'], 
@@ -18,9 +19,58 @@ const mono = JetBrains_Mono({
   variable: "--font-code" 
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://jonaferreira.dev';
+
 export const metadata: Metadata = {
-  title: "Jona Ferreira | Dev",
-  description: "Engenharia de Software e Soluções de Alta Complexidade.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Jona Ferreira | Senior Fullstack Developer & Software Engineer",
+    template: "%s | Jona Ferreira"
+  },
+  description: "Engenharia de Software, Arquitetura Limpa e Soluções Web de Alta Complexiade com .NET Core, Node.js e React 19.",
+  keywords: [
+    "Jona Ferreira",
+    "Desenvolvedor Fullstack",
+    "Engenheiro de Software",
+    ".NET Core",
+    "C#",
+    "React 19",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "Kasterweb",
+    "UFC Software Engineering"
+  ],
+  authors: [{ name: siteConfig.name, url: siteConfig.links.github }],
+  creator: siteConfig.name,
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: siteUrl,
+    title: "Jona Ferreira | Senior Fullstack Developer & Software Engineer",
+    description: "Engenharia de Software de Alta Performance, Arquitetura Limpa e Sistemas Distribuídos com .NET e React.",
+    siteName: "Jona Ferreira Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jona Ferreira | Senior Fullstack Developer",
+    description: "Engenharia de Software, .NET Core, Node.js e React 19.",
+    creator: "@jonaferreir4"
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
 };
 
 export default function RootLayout({
@@ -28,9 +78,58 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLdPerson = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: siteConfig.name,
+    jobTitle: 'Senior Fullstack Engineer',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Kasterweb',
+    },
+    alumniOf: {
+      '@type': 'EducationalOrganization',
+      name: 'Universidade Federal do Ceará (UFC)',
+    },
+    url: siteUrl,
+    sameAs: [
+      siteConfig.links.github,
+      siteConfig.links.linkedin,
+    ],
+    knowsAbout: [
+      'Software Engineering',
+      '.NET Core',
+      'C#',
+      'React',
+      'Next.js',
+      'TypeScript',
+      'Node.js',
+      'Clean Architecture',
+      'Microservices',
+      'WebSockets'
+    ],
+  };
+
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body suppressHydrationWarning className={`${rajdhani.variable} ${mono.variable} font-sans bg-void text-primary antialiased overflow-x-hidden selection:bg-tacticalHighlight selection:text-white`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPerson) }}
+        />
+      </head>
+      <body 
+        suppressHydrationWarning 
+        className={`${rajdhani.variable} ${mono.variable} font-sans bg-void text-primary antialiased overflow-x-hidden selection:bg-tacticalHighlight selection:text-white`}
+      >
+        {/* A11Y SKIP LINK */}
+        <a 
+          href="#main-content" 
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999999] focus:px-4 focus:py-2 focus:bg-tacticalHighlight focus:text-white focus:font-mono focus:font-bold focus:rounded-sm focus:shadow-xl"
+        >
+          Pular para o conteúdo principal
+        </a>
+
         <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false}>
           <ClickBreakerProvider>
             <TacticalGrid />
