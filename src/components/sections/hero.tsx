@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Download, Linkedin, Github, Cpu } from 'lucide-react';
 import Image from 'next/image';
-import Me from '@/assets/images/me-professional.jpeg';
+import MeAvatar from '@/assets/images/me-avatar.png';
 import { siteConfig } from '@/data/site-config';
 import { HeroTitleRobot } from '@/components/ui/HeroTitleRobot';
 import { useClickBreaker } from '@/providers/ClickBreakerProvider';
@@ -13,15 +13,15 @@ export default function Hero() {
   const { isSocialIconsPlaced } = useClickBreaker();
 
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       aria-labelledby="hero-title"
       className="relative min-h-[90vh] flex flex-col justify-between pt-24 pb-8 px-6 lg:px-12 bg-transparent border-b border-borderTech overflow-hidden"
     >
       <div className="container max-w-5xl mx-auto relative z-10 my-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
-        
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -29,7 +29,7 @@ export default function Hero() {
           >
             <HeroTitleRobot />
 
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
@@ -38,23 +38,23 @@ export default function Hero() {
               {parseFormattedText(siteConfig.heroBio)}
             </motion.p>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.5 }}
               className="flex flex-wrap gap-4 pt-4"
             >
-              <a 
-                href="#contact" 
+              <a
+                href="#contact"
                 className="px-8 py-3.5 bg-tacticalHighlight text-white font-bold rounded-sm hover:bg-indigo-600 hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(99,102,241,0.4)] transition-all duration-300 flex items-center gap-2"
                 aria-label="Ir para seção de contato com Jona Ferreira"
               >
-                 Entrar em Contato <ArrowRight size={18} />
+                Entrar em Contato <ArrowRight size={18} />
               </a>
-              
-              <a 
-                href={siteConfig.links.cv} 
-                target="_blank" 
+
+              <a
+                href={siteConfig.links.cv}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-3.5 border border-borderTech bg-armor text-primary font-medium rounded-sm hover:border-tacticalHighlight hover:text-tacticalHighlight hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(99,102,241,0.1)] transition-all duration-300 flex items-center gap-2"
                 aria-label="Baixar currículo PDF de Jona Ferreira"
@@ -64,72 +64,71 @@ export default function Hero() {
             </motion.div>
 
             {/* Social links initially hidden, revealed when robot places them! */}
-            <div 
-              id="hero-social-links" 
-              className={`flex gap-4 pt-6 text-steel transition-all duration-500 ${
-                isSocialIconsPlaced 
-                  ? 'opacity-100 scale-100' 
+            <div
+              id="hero-social-links"
+              className={`flex gap-4 pt-6 text-steel transition-all duration-500 ${isSocialIconsPlaced
+                  ? 'opacity-100 scale-100'
                   : 'opacity-0 scale-95 pointer-events-none'
-              }`}
+                }`}
             >
-               <a 
-                href={siteConfig.links.linkedin} 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href={siteConfig.links.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-tacticalHighlight transition-colors"
                 aria-label="Perfil no LinkedIn de Jona Ferreira"
-               >
+              >
                 <Linkedin size={24} />
-               </a>
-               <a 
-                id="hero-github-link" 
-                href={siteConfig.links.github} 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              </a>
+              <a
+                id="hero-github-link"
+                href={siteConfig.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-tacticalHighlight transition-colors relative"
                 aria-label="Perfil no GitHub de Jona Ferreira"
-               >
+              >
                 <Github size={24} />
-               </a>
+              </a>
             </div>
 
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="relative flex justify-center lg:justify-end"
           >
             <div className="relative w-[320px] sm:w-[350px] h-[390px] sm:h-[420px]">
-                <div className="absolute top-4 right-4 w-full h-full border-2 border-borderTech/50 rounded-sm"></div>
+              <div className="absolute top-4 right-4 w-full h-full border-2 border-borderTech/50 rounded-sm"></div>
 
-                <div className="relative w-full h-full bg-armor border border-borderTech p-3 shadow-2xl group">
+              <div className="relative w-full h-full bg-armor border border-borderTech p-3 shadow-2xl group">
 
-                    <div className="relative w-full h-full overflow-hidden bg-void">
+                <div className="relative w-full h-full overflow-hidden bg-void">
 
-                        <Image
-                          src={Me}
-                          alt={siteConfig.name}
-                          fill
-                          sizes="(max-width: 768px) 100vw, 350px"
-                          className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                          priority
-                        />
+                  <Image
+                    src={MeAvatar}
+                    alt={`${siteConfig.name} - Avatar`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 350px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    priority
+                  />
 
-                        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,0,0,0.3)_50%)] bg-[length:100%_4px] opacity-10 pointer-events-none z-20"></div>
-                    </div>
-
-                    <div className="absolute bottom-6 -left-6 bg-void border border-borderTech p-4 shadow-lg flex items-center gap-4 z-30">
-                        <div className="bg-green-500/10 text-green-600 p-2 rounded-sm">
-                           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        </div>
-                        <div>
-                            <p className="text-xs font-bold text-steel uppercase">Status Atual</p>
-                            <p className="text-sm font-bold text-primary">{siteConfig.status}</p>
-                        </div>
-                    </div>
+                  <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,0,0,0.3)_50%)] bg-[length:100%_4px] opacity-10 pointer-events-none z-20"></div>
                 </div>
+
+                <div className="absolute bottom-6 -left-6 bg-void border border-borderTech p-4 shadow-lg flex items-center gap-4 z-30">
+                  <div className="bg-green-500/10 text-green-600 p-2 rounded-sm">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-steel uppercase">Status Atual</p>
+                    <p className="text-sm font-bold text-primary">{siteConfig.status}</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
 
@@ -137,7 +136,7 @@ export default function Hero() {
       </div>
 
       {/* TACTICAL HUD METRICS BAR ANCHORED AT BOTTOM OF HERO */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.5 }}
