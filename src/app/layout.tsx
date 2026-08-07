@@ -2,10 +2,7 @@ import type { Metadata } from "next";
 import { Rajdhani, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
-import { ClickBreakerProvider } from "@/providers/ClickBreakerProvider";
 import { Navbar } from "@/components/ui/navbar";
-import { TacticalGrid } from "@/components/ui/tactical-grid";
-import { RobotDebugger } from "@/components/ui/RobotDebugger";
 import { siteConfig } from "@/data/site-config";
 
 const rajdhani = Rajdhani({
@@ -131,12 +128,8 @@ export default function RootLayout({
         </a>
 
         <ThemeProvider attribute="data-theme" defaultTheme="dark" enableSystem={false}>
-          <ClickBreakerProvider>
-            <TacticalGrid />
-            <Navbar />
-            {children}
-            <RobotDebugger />
-          </ClickBreakerProvider>
+          <Navbar />
+          {children}
         </ThemeProvider>
       </body>
     </html>

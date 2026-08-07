@@ -5,12 +5,11 @@ import { ArrowRight, Download, Linkedin, Github, Cpu } from 'lucide-react';
 import Image from 'next/image';
 import MeAvatar from '@/assets/images/me-avatar.png';
 import { siteConfig } from '@/data/site-config';
-import { HeroTitleRobot } from '@/components/ui/HeroTitleRobot';
-import { useClickBreaker } from '@/providers/ClickBreakerProvider';
 import { parseFormattedText } from '@/utils/text-parser';
 
 export default function Hero() {
-  const { isSocialIconsPlaced } = useClickBreaker();
+  const word1 = siteConfig.role.split(' ')[0] || 'Fullstack';
+  const word2 = siteConfig.role.split(' ')[1] || 'Developer';
 
   return (
     <section
@@ -27,7 +26,17 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <HeroTitleRobot />
+            {/* Static Professional Title with Gradient */}
+            <h1
+              id="hero-title"
+              className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-primary leading-[1.15] tracking-tight pt-2 pb-1"
+            >
+              {word1}
+              <br />
+              <span className="bg-gradient-to-r from-tacticalHighlight to-indigo-400 bg-clip-text text-transparent">
+                {word2}
+              </span>
+            </h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -63,13 +72,13 @@ export default function Hero() {
               </a>
             </motion.div>
 
-            {/* Social links initially hidden, revealed when robot places them! */}
-            <div
+            {/* Social links — visible immediately */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.4 }}
               id="hero-social-links"
-              className={`flex gap-4 pt-6 text-steel transition-all duration-500 ${isSocialIconsPlaced
-                  ? 'opacity-100 scale-100'
-                  : 'opacity-0 scale-95 pointer-events-none'
-                }`}
+              className="flex gap-4 pt-6 text-steel"
             >
               <a
                 href={siteConfig.links.linkedin}
@@ -90,7 +99,7 @@ export default function Hero() {
               >
                 <Github size={24} />
               </a>
-            </div>
+            </motion.div>
 
           </motion.div>
 
@@ -115,8 +124,6 @@ export default function Hero() {
                     className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     priority
                   />
-
-                  <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,0,0,0.3)_50%)] bg-[length:100%_4px] opacity-10 pointer-events-none z-20"></div>
                 </div>
 
                 <div className="absolute bottom-6 -left-6 bg-void border border-borderTech p-4 shadow-lg flex items-center gap-4 z-30">
