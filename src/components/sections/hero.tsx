@@ -1,53 +1,42 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Download, Linkedin, Github, Cpu } from 'lucide-react';
+import { ArrowRight, Download, Linkedin, Github, Cpu, GraduationCap } from 'lucide-react';
 import Image from 'next/image';
 import MeAvatar from '@/assets/images/me-avatar.png';
 import { getSiteConfig } from '@/data/site-config';
 import { parseFormattedText } from '@/utils/text-parser';
 import { useLocale, useTranslations } from 'next-intl';
+import { HeroTitleRobot } from '@/components/ui/HeroTitleRobot';
 
 export default function Hero() {
   const locale = useLocale() as 'pt' | 'en';
   const siteConfig = getSiteConfig(locale);
   const t = useTranslations('Hero');
 
-  const word1 = siteConfig.role.split(' ')[0] || 'Fullstack';
-  const word2 = siteConfig.role.split(' ').slice(1).join(' ') || 'Developer';
-
   return (
     <section
       id="home"
       aria-labelledby="hero-title"
-      className="relative min-h-[90vh] flex flex-col justify-between pt-24 pb-8 px-6 lg:px-12 bg-transparent border-b border-borderTech overflow-hidden"
+      className="relative min-h-[92vh] flex flex-col justify-between pt-28 pb-16 px-6 lg:px-12 bg-transparent border-b border-slate-200/60 dark:border-borderTech/40 overflow-hidden"
     >
-      <div className="container max-w-5xl mx-auto relative z-10 my-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
+      <div className="container max-w-6xl mx-auto relative z-10 my-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
 
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="lg:col-span-7 space-y-6"
           >
-            {/* Static Professional Title with Gradient */}
-            <h1
-              id="hero-title"
-              className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-primary leading-[1.15] tracking-tight pt-2 pb-1"
-            >
-              {word1}
-              <br />
-              <span className="bg-gradient-to-r from-tacticalHighlight to-indigo-400 bg-clip-text text-transparent">
-                {word2}
-              </span>
-            </h1>
+            {/* Interactive Hero Title */}
+            <HeroTitleRobot />
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="text-lg md:text-xl text-steel max-w-xl leading-relaxed"
+              className="text-lg sm:text-xl text-steel max-w-xl leading-relaxed font-normal"
             >
               {parseFormattedText(siteConfig.heroBio)}
             </motion.p>
@@ -60,7 +49,7 @@ export default function Hero() {
             >
               <a
                 href="#contact"
-                className="px-8 py-3.5 bg-tacticalHighlight text-white font-bold rounded-sm hover:bg-indigo-600 hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(99,102,241,0.4)] transition-all duration-300 flex items-center gap-2"
+                className="px-7 py-3.5 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-500 hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(99,102,241,0.4)] transition-all duration-300 flex items-center gap-2 text-sm"
                 aria-label="Ir para seção de contato com Jona Ferreira"
               >
                 {t('contactBtn')} <ArrowRight size={18} />
@@ -70,7 +59,7 @@ export default function Hero() {
                 href={siteConfig.cvLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-3.5 border border-borderTech bg-armor text-primary font-medium rounded-sm hover:border-tacticalHighlight hover:text-tacticalHighlight hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(99,102,241,0.1)] transition-all duration-300 flex items-center gap-2"
+                className="px-7 py-3.5 border border-slate-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/60 text-slate-900 dark:text-primary font-medium rounded-xl hover:border-indigo-500/50 hover:text-indigo-600 dark:hover:text-indigo-400 hover:scale-[1.02] transition-all duration-300 flex items-center gap-2 text-sm backdrop-blur-md shadow-sm"
                 aria-label="Baixar currículo PDF de Jona Ferreira"
               >
                 <Download size={18} /> {t('downloadCvBtn')}
@@ -83,62 +72,51 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.4 }}
               id="hero-social-links"
-              className="flex gap-4 pt-6 text-steel"
+              className="flex items-center gap-5 pt-4 text-steel"
             >
               <a
                 href={siteConfig.links.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-tacticalHighlight transition-colors"
+                className="p-2.5 bg-white/80 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-800 rounded-xl text-slate-700 dark:text-steel hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-500/40 transition-all duration-200 shadow-sm"
                 aria-label="Perfil no LinkedIn de Jona Ferreira"
               >
-                <Linkedin size={24} />
+                <Linkedin size={20} />
               </a>
               <a
                 id="hero-github-link"
                 href={siteConfig.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-tacticalHighlight transition-colors relative"
+                className="p-2.5 bg-white/80 dark:bg-zinc-900/60 border border-slate-200 dark:border-zinc-800 rounded-xl text-slate-700 dark:text-steel hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-indigo-500/40 transition-all duration-200 shadow-sm"
                 aria-label="Perfil no GitHub de Jona Ferreira"
               >
-                <Github size={24} />
+                <Github size={20} />
               </a>
             </motion.div>
 
           </motion.div>
 
+          {/* AVATAR FRAME */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="relative flex justify-center lg:justify-end"
+            className="lg:col-span-5 flex justify-center lg:justify-end"
           >
-            <div className="relative w-[320px] sm:w-[350px] h-[390px] sm:h-[420px]">
-              <div className="absolute top-4 right-4 w-full h-full border-2 border-borderTech/50 rounded-sm"></div>
+            <div className="relative w-[300px] sm:w-[340px] h-[370px] sm:h-[410px] group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition duration-1000"></div>
 
-              <div className="relative w-full h-full bg-armor border border-borderTech p-3 shadow-2xl group">
-
-                <div className="relative w-full h-full overflow-hidden bg-void">
-
+              <div className="relative w-full h-full bg-white/90 dark:bg-zinc-900/90 border border-slate-200 dark:border-zinc-800 p-3 rounded-2xl shadow-xl dark:shadow-2xl">
+                <div className="relative w-full h-full overflow-hidden rounded-xl bg-slate-900 dark:bg-zinc-950">
                   <Image
                     src={MeAvatar}
                     alt={`${siteConfig.name} - Avatar`}
                     fill
-                    sizes="(max-width: 768px) 100vw, 350px"
+                    sizes="(max-width: 768px) 100vw, 340px"
                     className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     priority
                   />
-                </div>
-
-                <div className="absolute bottom-6 -left-6 bg-void border border-borderTech p-4 shadow-lg flex items-center gap-4 z-30">
-                  <div className="bg-green-500/10 text-green-600 p-2 rounded-sm">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-steel uppercase">{t('currentStatus')}</p>
-                    <p className="text-sm font-bold text-primary">{siteConfig.status}</p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -147,31 +125,31 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* TACTICAL HUD METRICS BAR */}
+      {/* METRICS BAR ANCHORED AT BOTTOM */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.5 }}
-        className="container max-w-5xl mx-auto pt-10 mt-auto z-10"
+        className="container max-w-6xl mx-auto pt-12 mt-auto z-10"
       >
-        <div className="grid grid-cols-2 gap-4 p-4 bg-armor/80 backdrop-blur-md border border-borderTech clip-tech font-mono text-xs shadow-lg">
-          <div className="flex items-center gap-3 border-r border-borderTech/60 pr-2">
-            <div className="p-2 bg-tacticalHighlight/10 text-tacticalHighlight rounded-sm">
-              <Cpu size={18} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-5 bg-white/80 dark:bg-zinc-900/60 backdrop-blur-xl border border-slate-200 dark:border-zinc-800/80 rounded-2xl shadow-lg dark:shadow-xl">
+          <div className="flex items-center gap-4 border-b sm:border-b-0 sm:border-r border-slate-200 dark:border-zinc-800/80 pb-3 sm:pb-0 sm:pr-4">
+            <div className="p-3 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 rounded-xl">
+              <Cpu size={20} />
             </div>
             <div>
-              <span className="block text-steel text-[10px] uppercase">{t('stackCore')}</span>
-              <span className="text-primary font-bold text-sm">.NET • REACT • NODE</span>
+              <span className="block text-steel text-xs font-mono uppercase tracking-wider">{t('stackCore')}</span>
+              <span className="text-primary font-bold text-base font-sans">.NET • REACT 19 • NODE</span>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-tacticalHighlight/10 text-tacticalHighlight rounded-sm">
-              <span className="font-extrabold text-tacticalHighlight text-xs">UFC</span>
+          <div className="flex items-center gap-4 sm:pl-2">
+            <div className="p-3 bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 rounded-xl">
+              <GraduationCap size={20} />
             </div>
             <div>
-              <span className="block text-steel text-[10px] uppercase">{t('education')}</span>
-              <span className="text-primary font-bold text-sm">{t('degree')}</span>
+              <span className="block text-steel text-xs font-mono uppercase tracking-wider">{t('education')}</span>
+              <span className="text-primary font-bold text-base font-sans">ENG. DE SOFTWARE (UFC)</span>
             </div>
           </div>
         </div>

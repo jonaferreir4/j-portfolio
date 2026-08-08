@@ -7,7 +7,7 @@ export const siteConfig = {
     github: "https://github.com/jonaferreir4",
     linkedin: "https://linkedin.com/in/jonaferreira",
     cvPt: "/docs/curriculo.pdf",
-    cvEn: "/docs/curriculo.pdf" // Resume PDF link
+    cvEn: "/docs/curriculo.pdf"
   },
   github: {
     username: "jonaferreir4",
@@ -27,7 +27,7 @@ export function getSiteConfig(locale: Locale = 'pt') {
 
   return {
     ...siteConfig,
-    role: isEn ? "Fullstack Developer (React/Next & .NET)" : "Desenvolvedor Fullstack (React/Next & .NET)",
+    role: isEn ? "Fullstack Developer" : "Desenvolvedor Fullstack",
     titleBio: isEn ? "Software &\nProblem Solving" : "Desenvolvimento &\nResolução de Problemas",
     heroBio: isEn
       ? "Hi, I'm **Jona Ferreira**. I build scalable web applications with **React 19**, **Next.js 16**, **TypeScript**, **.NET Core**, and **Node.js**. Tech Lead at **Kasterweb**, steering Feature-First architecture standards and uniting frontend excellence with robust backend engineering."
@@ -40,7 +40,7 @@ export function getSiteConfig(locale: Locale = 'pt') {
         ]
       : [
           "Engenharia de Software na **UFC** (formação Dez/2026), atuo como Desenvolvedor Full Stack e Responsável Técnico com forte foco em arquitetura de software e entrega de valor real em produção.",
-          "Na **Kasterweb**, arquiteto o ecossistema frontend com **React 19, Next.js (App Router)** e **Tailwind CSS v4**, aplicando o padrão Feature-First (Vertical Slice) e desenvolvendo soluções avançadas como plataformas *white-label multi-tenant* com tokens em espaço OKLCH e integrações em tempo real.",
+          "Na **Kasterweb**, arquiteto o ecossistema frontend com **React 19, Next.js (App Router)** e **Tailwind CSS v4**, aplicando o padrão Feature-First (Vertical Slice) e desenvolvendo soluções avançadas como plataformas *white-label multi-tenant* com tokens em space OKLCH e integrações em tempo real.",
           "Possuo sólida base técnica em backend com **C# / .NET Core, Node.js (Express & APIs REST)**, **Clean Architecture, WebSockets e SQL**, além de atuar como Líder Técnico do projeto de extensão **GestLab** na UFC. Integração contínua de ferramentas de IA (GitHub Copilot, ChatGPT, Claude) para otimização de workflow, análise de código e cobertura de testes."
         ],
     status: isEn ? "Open to Work" : "Open to Work",

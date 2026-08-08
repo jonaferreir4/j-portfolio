@@ -12,22 +12,14 @@ interface LetterOffset {
   rotate: number;
 }
 
-function getDeveloperGradientColor(index: number, total: number): string {
-  if (total <= 1) return 'rgb(99, 102, 241)';
-  const ratio = index / (total - 1);
-  const r = Math.round(99 + (129 - 99) * ratio);
-  const g = Math.round(102 + (140 - 102) * ratio);
-  const b = Math.round(241 + (248 - 241) * ratio);
-  return `rgb(${r}, ${g}, ${b})`;
-}
-
 export function HeroTitleRobot() {
   const locale = useLocale() as 'pt' | 'en';
   const siteConfig = getSiteConfig(locale);
   const { status, triggerTitleBreak } = useClickBreaker();
 
-  const word1 = siteConfig.role.split(' ')[0] || 'Fullstack';
-  const word2 = siteConfig.role.split(' ').slice(1).join(' ') || 'Developer';
+  const parts = siteConfig.role.split(' ');
+  const word1 = parts[0] || 'Desenvolvedor';
+  const word2 = parts.slice(1).join(' ') || 'Fullstack';
 
   const [offsets, setOffsets] = useState<{ [key: string]: LetterOffset }>({});
 
@@ -61,9 +53,9 @@ export function HeroTitleRobot() {
   };
 
   return (
-    <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-primary leading-[1.15] tracking-tight select-none pt-2 pb-1">
-      {/* Word 1: Fullstack / Desenvolvedor */}
-      <span className="inline-flex whitespace-nowrap">
+    <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black text-primary leading-[1.05] tracking-tight select-none pt-2 pb-2 uppercase font-sans">
+      {/* Word 1 */}
+      <span className="inline-flex flex-wrap">
         {word1.split('').map((char, i) => {
           const key = `w1-${i}`;
           const pos = offsets[key] || { x: 0, y: 0, rotate: 0 };
@@ -82,10 +74,12 @@ export function HeroTitleRobot() {
                 rotate: pos.rotate,
               }}
               transition={{ type: 'spring', stiffness: 320, damping: 22 }}
-              whileHover={{ scale: 1.18, color: '#818cf8' }}
-              whileDrag={{ scale: 1.3, zIndex: 50 }}
-              className={`draggable-letter inline-block cursor-grab active:cursor-grabbing relative text-primary ${
-                isMoved ? 'drop-shadow-[0_0_12px_rgba(99,102,241,0.8)]' : ''
+              whileHover={{ scale: 1.15 }}
+              whileDrag={{ scale: 1.25, zIndex: 50 }}
+              className={`draggable-letter inline-block cursor-grab active:cursor-grabbing transition-colors duration-200 ${
+                isMoved
+                  ? 'drop-shadow-[0_0_15px_rgba(99,102,241,0.8)] text-indigo-600 dark:text-indigo-400 font-black'
+                  : 'text-primary hover:text-indigo-600 dark:hover:text-indigo-400'
               }`}
             >
               {char}
@@ -96,13 +90,12 @@ export function HeroTitleRobot() {
 
       <br />
 
-      {/* Word 2: Developer / Fullstack */}
-      <span className="inline-flex whitespace-nowrap">
+      {/* Word 2 */}
+      <span className="inline-flex flex-wrap">
         {word2.split('').map((char, i) => {
           const key = `w2-${i}`;
           const pos = offsets[key] || { x: 0, y: 0, rotate: 0 };
           const isMoved = Math.abs(pos.x) > 3 || Math.abs(pos.y) > 3;
-          const letterColor = getDeveloperGradientColor(i, word2.length);
 
           return (
             <motion.span
@@ -117,11 +110,12 @@ export function HeroTitleRobot() {
                 rotate: pos.rotate,
               }}
               transition={{ type: 'spring', stiffness: 320, damping: 22 }}
-              whileHover={{ scale: 1.18 }}
-              whileDrag={{ scale: 1.3, zIndex: 50 }}
-              style={{ color: isMoved ? '#f43f5e' : letterColor }}
-              className={`draggable-letter inline-block cursor-grab active:cursor-grabbing relative ${
-                isMoved ? 'drop-shadow-[0_0_14px_rgba(244,63,94,0.9)]' : ''
+              whileHover={{ scale: 1.15 }}
+              whileDrag={{ scale: 1.25, zIndex: 50 }}
+              className={`draggable-letter inline-block cursor-grab active:cursor-grabbing transition-colors duration-200 ${
+                isMoved
+                  ? 'drop-shadow-[0_0_15px_rgba(244,63,94,0.8)] text-rose-600 dark:text-rose-400 font-black'
+                  : 'text-outline hover:text-rose-600 dark:hover:text-rose-400'
               }`}
             >
               {char}

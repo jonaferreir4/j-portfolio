@@ -51,19 +51,19 @@ export function GithubStats() {
   }, []);
 
   return (
-    <section id="github-telemetry" className="py-16 px-6 bg-armor/40 border-b border-borderTech relative">
-      <div className="container max-w-5xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-          <div className="bg-void/90 p-6 sm:p-8 rounded-sm border border-borderTech backdrop-blur-sm flex-1 max-w-3xl">
-            <span className="font-mono text-tacticalHighlight text-xs font-bold uppercase tracking-widest block mb-1">
+    <section id="github-telemetry" className="py-20 px-6 bg-transparent border-b border-slate-200/60 dark:border-borderTech/40 relative">
+      <div className="container max-w-6xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+          <div className="max-w-3xl">
+            <span className="inline-block px-3.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 font-mono text-xs font-semibold uppercase tracking-wider mb-2">
               {t('tag')}
             </span>
-            <h2 className="text-2xl md:text-3xl font-bold text-primary uppercase">
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-primary font-display uppercase tracking-tight">
               {t('title')}
             </h2>
           </div>
-          <div className="flex items-center gap-2 font-mono text-[11px] bg-void border border-borderTech px-3 py-1.5 rounded-sm w-fit text-steel">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <div className="flex items-center gap-2 font-mono text-xs bg-white dark:bg-zinc-900/80 border border-slate-200 dark:border-zinc-800 px-3.5 py-1.5 rounded-full w-fit text-steel shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
             <span>API_STATUS: {error ? 'FALLBACK_CACHE' : 'LIVE_SYNC'}</span>
           </div>
         </div>
@@ -73,53 +73,53 @@ export function GithubStats() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {/* Card 1: Public Repos */}
-          <div className="bg-armor border border-borderTech p-5 clip-tech hover:border-tacticalHighlight transition-colors group">
-            <div className="flex justify-between items-start mb-3">
-              <span className="font-mono text-[10px] text-steel uppercase">{t('publicRepos')}</span>
-              <GitBranch size={18} className="text-tacticalHighlight group-hover:scale-110 transition-transform" />
+          <div className="bg-white/90 dark:bg-zinc-900/60 backdrop-blur-xl border border-slate-200 dark:border-zinc-800/80 p-6 rounded-2xl hover:border-indigo-500/40 transition-colors group shadow-md dark:shadow-lg">
+            <div className="flex justify-between items-start mb-4">
+              <span className="font-mono text-xs text-steel uppercase font-semibold">{t('publicRepos')}</span>
+              <GitBranch size={20} className="text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform" />
             </div>
-            <div className="text-3xl font-bold font-mono text-primary">
-              {loading ? <RefreshCw className="animate-spin text-steel" size={24} /> : `${stats?.public_repos || 18}+`}
+            <div className="text-4xl font-extrabold font-display text-primary">
+              {loading ? <RefreshCw className="animate-spin text-steel" size={28} /> : `${stats?.public_repos || 18}+`}
             </div>
-            <p className="font-mono text-[10px] text-steel mt-2">{t('publicReposSub')}</p>
+            <p className="font-mono text-xs text-steel mt-2">{t('publicReposSub')}</p>
           </div>
 
-          {/* Card 2: Core Stack */}
-          <div className="bg-armor border border-borderTech p-5 clip-tech hover:border-tacticalHighlight transition-colors group">
-            <div className="flex justify-between items-start mb-3">
-              <span className="font-mono text-[10px] text-steel uppercase">{t('mainStack')}</span>
-              <Activity size={18} className="text-tacticalHighlight group-hover:scale-110 transition-transform" />
+          {/* Card 2: Primary Stack */}
+          <div className="bg-white/90 dark:bg-zinc-900/60 backdrop-blur-xl border border-slate-200 dark:border-zinc-800/80 p-6 rounded-2xl hover:border-indigo-500/40 transition-colors group shadow-md dark:shadow-lg">
+            <div className="flex justify-between items-start mb-4">
+              <span className="font-mono text-xs text-steel uppercase font-semibold">{t('mainStack')}</span>
+              <Activity size={20} className="text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform" />
             </div>
-            <div className="text-xl font-bold font-mono text-primary">.NET / React / Node</div>
-            <p className="font-mono text-[10px] text-steel mt-2">{t('mainStackSub')}</p>
+            <div className="text-2xl font-extrabold font-display text-primary">.NET / React / Node</div>
+            <p className="font-mono text-xs text-steel mt-2">{t('mainStackSub')}</p>
           </div>
 
           {/* Card 3: Code Integrity */}
-          <div className="bg-armor border border-borderTech p-5 clip-tech hover:border-tacticalHighlight transition-colors group">
-            <div className="flex justify-between items-start mb-3">
-              <span className="font-mono text-[10px] text-steel uppercase">{t('technicalIntegrity')}</span>
-              <ShieldCheck size={18} className="text-emerald-400 group-hover:scale-110 transition-transform" />
+          <div className="bg-white/90 dark:bg-zinc-900/60 backdrop-blur-xl border border-slate-200 dark:border-zinc-800/80 p-6 rounded-2xl hover:border-emerald-500/40 transition-colors group shadow-md dark:shadow-lg">
+            <div className="flex justify-between items-start mb-4">
+              <span className="font-mono text-xs text-steel uppercase font-semibold">{t('technicalIntegrity')}</span>
+              <ShieldCheck size={20} className="text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-transform" />
             </div>
-            <div className="text-3xl font-bold font-mono text-emerald-400">100%</div>
-            <p className="font-mono text-[10px] text-steel mt-2">TYPESCRIPT STRICT MODE</p>
+            <div className="text-4xl font-extrabold font-display text-emerald-600 dark:text-emerald-400">100%</div>
+            <p className="font-mono text-xs text-steel mt-2">TYPESCRIPT STRICT MODE</p>
           </div>
 
           {/* Card 4: GitHub Link */}
-          <div className="bg-armor border border-borderTech p-5 clip-tech hover:border-tacticalHighlight transition-colors group flex flex-col justify-between">
-            <div className="flex justify-between items-start mb-3">
-              <span className="font-mono text-[10px] text-steel uppercase">{t('githubProfile')}</span>
-              <Github size={18} className="text-tacticalHighlight group-hover:scale-110 transition-transform" />
+          <div className="bg-white/90 dark:bg-zinc-900/60 backdrop-blur-xl border border-slate-200 dark:border-zinc-800/80 p-6 rounded-2xl hover:border-indigo-500/40 transition-colors group flex flex-col justify-between shadow-md dark:shadow-lg">
+            <div className="flex justify-between items-start mb-4">
+              <span className="font-mono text-xs text-steel uppercase font-semibold">{t('githubProfile')}</span>
+              <Github size={20} className="text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform" />
             </div>
             <div>
-              <span className="font-mono text-sm font-bold text-primary block">@{siteConfig.github.username}</span>
+              <span className="font-display text-lg font-bold text-primary block">@{siteConfig.github.username}</span>
               <a 
                 href={siteConfig.links.github} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="inline-flex items-center gap-1 font-mono text-[10px] text-tacticalHighlight hover:underline mt-2"
+                className="inline-flex items-center gap-1 font-mono text-xs text-indigo-600 dark:text-indigo-400 hover:underline mt-2 font-semibold"
                 aria-label="Acessar perfil de Jona Ferreira no GitHub"
               >
                 {t('accessRepos')}

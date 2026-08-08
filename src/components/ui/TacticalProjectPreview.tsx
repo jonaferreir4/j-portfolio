@@ -11,7 +11,7 @@ interface TacticalProjectPreviewProps {
 export function TacticalProjectPreview({ codeName, type = 'default', title }: TacticalProjectPreviewProps) {
   if (type === 'events') {
     return (
-      <div className="w-full h-full min-h-[200px] bg-slate-950 p-4 font-mono text-xs flex flex-col justify-between border border-borderTech/40 relative overflow-hidden select-none group/preview">
+      <div className="w-full h-full min-h-[200px] bg-slate-950 p-4 font-mono text-xs flex flex-col justify-between relative overflow-hidden select-none group/preview">
         <div className="absolute inset-0 bg-[radial-gradient(#a855f7_1px,transparent_1px)] [background-size:12px_12px] opacity-15"></div>
 
         <div className="flex justify-between items-center z-10 border-b border-purple-500/20 pb-2">
@@ -42,11 +42,11 @@ export function TacticalProjectPreview({ codeName, type = 'default', title }: Ta
 
   if (type === 'kanban') {
     return (
-      <div className="w-full h-full min-h-[200px] bg-slate-950 p-4 font-mono text-xs flex flex-col justify-between border border-borderTech/40 relative overflow-hidden select-none group/preview">
+      <div className="w-full h-full min-h-[200px] bg-slate-950 p-4 font-mono text-xs flex flex-col justify-between relative overflow-hidden select-none group/preview">
         <div className="absolute inset-0 bg-[radial-gradient(#6366f1_1px,transparent_1px)] [background-size:12px_12px] opacity-15"></div>
         
         <div className="flex justify-between items-center z-10 border-b border-indigo-500/20 pb-2">
-          <span className="text-[10px] text-tacticalHighlight font-bold tracking-wider uppercase">
+          <span className="text-[10px] text-indigo-400 font-bold tracking-wider uppercase">
             /// KANBAN_STATE // OPTIMISTIC_SYNC
           </span>
           <span className="flex items-center gap-1.5 text-[9px] text-emerald-400">
@@ -100,7 +100,7 @@ export function TacticalProjectPreview({ codeName, type = 'default', title }: Ta
 
   if (type === 'microservice') {
     return (
-      <div className="w-full h-full min-h-[200px] bg-slate-950 p-4 font-mono text-xs flex flex-col justify-between border border-borderTech/40 relative overflow-hidden select-none group/preview">
+      <div className="w-full h-full min-h-[200px] bg-slate-950 p-4 font-mono text-xs flex flex-col justify-between relative overflow-hidden select-none group/preview">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e1b4b_1px,transparent_1px),linear-gradient(to_bottom,#1e1b4b_1px,transparent_1px)] bg-[size:16px_16px] opacity-20"></div>
 
         <div className="flex justify-between items-center z-10 border-b border-orange-500/20 pb-2">
@@ -137,7 +137,7 @@ export function TacticalProjectPreview({ codeName, type = 'default', title }: Ta
 
   if (type === 'ecommerce') {
     return (
-      <div className="w-full h-full min-h-[200px] bg-slate-950 p-4 font-mono text-xs flex flex-col justify-between border border-borderTech/40 relative overflow-hidden select-none group/preview">
+      <div className="w-full h-full min-h-[200px] bg-slate-950 p-4 font-mono text-xs flex flex-col justify-between relative overflow-hidden select-none group/preview">
         <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:12px_12px] opacity-15"></div>
 
         <div className="flex justify-between items-center z-10 border-b border-emerald-500/20 pb-2">
@@ -168,7 +168,7 @@ export function TacticalProjectPreview({ codeName, type = 'default', title }: Ta
 
   if (type === 'websocket') {
     return (
-      <div className="w-full h-full min-h-[200px] bg-slate-950 p-4 font-mono text-xs flex flex-col justify-between border border-borderTech/40 relative overflow-hidden select-none group/preview">
+      <div className="w-full h-full min-h-[200px] bg-slate-950 p-4 font-mono text-xs flex flex-col justify-between relative overflow-hidden select-none group/preview">
         <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:14px_14px] opacity-15"></div>
 
         <div className="flex justify-between items-center z-10 border-b border-emerald-500/20 pb-2">
@@ -205,7 +205,7 @@ export function TacticalProjectPreview({ codeName, type = 'default', title }: Ta
 
   if (type === 'proxy') {
     return (
-      <div className="w-full h-full min-h-[200px] bg-slate-950 p-4 font-mono text-xs flex flex-col justify-between border border-borderTech/40 relative overflow-hidden select-none group/preview">
+      <div className="w-full h-full min-h-[200px] bg-slate-950 p-4 font-mono text-xs flex flex-col justify-between relative overflow-hidden select-none group/preview">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#334155_1px,transparent_1px)] bg-[size:20px_20px] opacity-20"></div>
 
         <div className="flex justify-between items-center z-10 border-b border-slate-700 pb-2">
@@ -235,9 +235,9 @@ export function TacticalProjectPreview({ codeName, type = 'default', title }: Ta
   }
 
   return (
-    <div className="w-full h-full min-h-[200px] bg-slate-950 p-4 font-mono text-xs flex flex-col justify-between border border-borderTech/40 relative overflow-hidden select-none">
+    <div className="w-full h-full min-h-[200px] bg-slate-950 p-4 font-mono text-xs flex flex-col justify-between relative overflow-hidden select-none">
       <div className="flex justify-between items-center z-10">
-        <span className="text-[10px] text-tacticalHighlight uppercase">/// SYSTEM_PREVIEW</span>
+        <span className="text-[10px] text-indigo-400 uppercase">/// SYSTEM_PREVIEW</span>
         <span className="text-[9px] text-slate-500">ID: {codeName}</span>
       </div>
       <div className="text-center z-10 my-auto">
