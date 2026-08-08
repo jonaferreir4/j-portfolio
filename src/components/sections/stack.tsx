@@ -1,21 +1,27 @@
-'use client'
+'use client';
+
 import { motion } from 'framer-motion';
-import { technologies } from '@/data/stack';
+import { getTechnologies } from '@/data/stack';
+import { useLocale, useTranslations } from 'next-intl';
 
 export default function Stack() {
+  const locale = useLocale() as 'pt' | 'en';
+  const technologies = getTechnologies(locale);
+  const t = useTranslations('Stack');
+
   return (
     <section id="stack" className="py-24 px-6 bg-transparent border-b border-borderTech">
       <div className="container max-w-6xl mx-auto">
         
         <div className="mb-16 text-center md:text-left bg-void/90 p-6 sm:p-8 rounded-sm border border-borderTech backdrop-blur-sm max-w-3xl">
           <span className="font-mono text-tacticalHighlight text-sm font-bold uppercase tracking-widest mb-2 block">
-            Arsenal Técnico
+            {t('tag')}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-primary max-w-2xl">
-            Stack Tecnológica & Ferramentas
+            {t('title')}
           </h2>
           <p className="text-steel mt-4 max-w-2xl">
-            Um ecossistema versátil. Do desenvolvimento moderno com <strong>.NET e React</strong> à manutenção crítica de sistemas legados em <strong>PHP</strong>.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -57,5 +63,5 @@ export default function Stack() {
 
       </div>
     </section>
-  )
+  );
 }

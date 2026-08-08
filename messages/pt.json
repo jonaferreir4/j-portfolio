@@ -1,0 +1,102 @@
+{
+  "Navbar": {
+    "about": "Sobre",
+    "experience": "Experiência",
+    "projects": "Projetos",
+    "stack": "Expertise",
+    "contact": "Contato",
+    "changeTheme": "Mudar Tema"
+  },
+  "Hero": {
+    "contactBtn": "Entrar em Contato",
+    "downloadCvBtn": "Baixar CV",
+    "currentStatus": "Status Atual",
+    "stackCore": "STACK CORE",
+    "education": "FORMAÇÃO",
+    "degree": "ENG. SOFTWARE"
+  },
+  "About": {
+    "bioData": "/// Bio_Data",
+    "capabilityDistribution": "/// CAPABILITY_DISTRIBUTION",
+    "evidenceTitle": "Evidências de Produção & Arquitetura",
+    "academicBackground": "Formação Acadêmica",
+    "locationTimezone": "Localização & Fuso",
+    "cap1Title": "FRONTEND ENG. (REACT 19 / NEXT 16)",
+    "cap1Tag": "PRODUÇÃO",
+    "cap1Desc": "Feature-First (Vertical Slice), White-Label multi-tenant em Next.js com tokens em OKLCH, Zustand e TanStack Query.",
+    "cap2Title": "BACKEND ARCH (.NET CORE / NODE.JS)",
+    "cap2Tag": "ROBUSTO",
+    "cap2Desc": "Clean Architecture em C#/.NET 8, APIs RESTful em Node.js, WebSockets duplex em tempo real via SignalR e microsserviços Java/AWS SES.",
+    "cap3Title": "SEGURANÇA & LEGADO (PHP / SQL / RBAC)",
+    "cap3Tag": "VERIFICADO",
+    "cap3Desc": "Refatoração de sistemas legados em produção, controle de acesso RBAC com múltiplos perfis e autenticação segura.",
+    "verified": "VERIFICADO"
+  },
+  "Experience": {
+    "workHistory": "/// Work_History",
+    "title": "Experiência Profissional",
+    "hideProjects": "/// OCULTAR_PROJETOS_ENTREGUES",
+    "showProjects": "/// EXIBIR_PROJETOS_ENTREGUES"
+  },
+  "Garage": {
+    "tag": "/// GARAGEM_DE_CODIFICAÇÃO",
+    "title": "Projetos Selecionados & Cases de Estudo",
+    "subtitle": "Uma seleção de aplicações web modernas, arquiteturas de back-end e experimentos de alta performance com análise técnica completa.",
+    "viewCaseStudy": "Ver Case Study Completo"
+  },
+  "GithubStats": {
+    "tag": "/// GITHUB_LIVE_TELEMETRY",
+    "title": "Métricas Técnicas em Tempo Real",
+    "publicRepos": "REPOSITÓRIOS PÚBLICOS",
+    "publicReposSub": "CÓDIGO ABERTO NO GITHUB",
+    "mainStack": "STACK PRINCIPAL",
+    "mainStackSub": "CLEAN ARCHITECTURE & REACT 19",
+    "technicalIntegrity": "INTEGRIDADE TÉCNICA",
+    "githubProfile": "PERFIL GITHUB",
+    "accessRepos": "Acessar Repositórios →"
+  },
+  "Stack": {
+    "tag": "Arsenal Técnico",
+    "title": "Stack Tecnológica & Ferramentas",
+    "subtitle": "Um ecossistema versátil. Do desenvolvimento moderno com .NET e React à manutenção crítica de sistemas legados em PHP."
+  },
+  "Contact": {
+    "tag": "/// Communication_Channel",
+    "title": "Iniciar Contato / Proposta",
+    "subtitle": "Estou disponível para novas oportunidades, projetos de consultoria técnica e posições CLT/PJ.",
+    "dispatcherTag": "/// MESSAGE_DISPATCHER",
+    "statusReady": "STATUS: PRONTO",
+    "nameLabel": "Seu Nome",
+    "emailLabel": "Seu E-mail",
+    "subjectLabel": "Assunto",
+    "messageLabel": "Mensagem",
+    "submitBtn": "TRANSMITIR MENSAGEM",
+    "submitting": "TRANSMITINDO_DADOS...",
+    "successTitle": "Mensagem Transmitida com Sucesso!",
+    "successDesc": "Obrigado pelo contato. Retornarei sua mensagem em menos de 24 horas no e-mail informado.",
+    "newMsgBtn": "Enviar Nova Mensagem",
+    "telemetryTag": "/// TELEMETRIA_OPERACIONAL",
+    "timezoneLabel": "FUSO HORÁRIO / LOCAL",
+    "slaLabel": "TEMPO MÉDIO DE RESPOSTA",
+    "slaValue": "< 24 HORAS ÚTEIS",
+    "availabilityLabel": "DISPONIBILIDADE ATUAL",
+    "directChannelsTag": "/// CANAIS_DIRETOS"
+  },
+  "CaseStudy": {
+    "backLink": "/// VOLTAR_PARA_PROJETOS",
+    "repoBtn": "Repositório GitHub",
+    "demoBtn": "Live Demo",
+    "resultsTag": "/// 01_RESULTADOS_MEDIDOS_E_IMPACTO",
+    "diagramTag": "/// 02_DIAGRAMA_DE_ARQUITETURA_E_FLUXO",
+    "problemTag": "/// 03_CONTEXTO_DE_NEGÓCIO_E_DESAFIOS",
+    "challengesTitle": "Desafios Técnicos Identificados:",
+    "archTag": "/// 04_DECISÕES_DE_ARQUITETURA",
+    "tradeoffsTag": "/// 05_TRADE_OFFS_E_COMPROMISSOS_TÉCNICOS",
+    "decisionAdopted": "DECISÃO ADOTADA:",
+    "rationale": "✓ RATIONALE (POR QUE):",
+    "downside": "⚠ DOWNSIDE (TRADE-OFF):",
+    "techUsed": "TECNOLOGIAS UTILIZADAS NO CASE",
+    "viewAll": "Ver Todos os Projetos →",
+    "notFound": "Projeto Não Encontrado"
+  }
+}

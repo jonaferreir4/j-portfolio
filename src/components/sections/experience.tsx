@@ -4,12 +4,16 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, ChevronDown, ChevronUp, Layers } from 'lucide-react';
 import Image from 'next/image';
-import { experiences } from '@/data/experiences';
+import { getExperiences } from '@/data/experiences';
+import { useLocale, useTranslations } from 'next-intl';
 
 export default function Experience() {
-  // State for toggling expanded project details per experience item
+  const locale = useLocale() as 'pt' | 'en';
+  const experiences = getExperiences(locale);
+  const t = useTranslations('Experience');
+
   const [expandedProjects, setExpandedProjects] = useState<Record<number, boolean>>({
-    1: true // Default open for first experience
+    1: true
   });
 
   const toggleExpand = (id: number) => {
@@ -29,10 +33,10 @@ export default function Experience() {
         
         <div className="mb-16 bg-void/90 p-6 sm:p-8 rounded-sm border border-borderTech backdrop-blur-sm max-w-3xl">
           <span className="font-mono text-tacticalHighlight text-xs uppercase tracking-widest mb-1 block font-bold">
-            {'/// Work_History'}
+            {t('workHistory')}
           </span>
           <h2 id="experience-heading" className="text-3xl md:text-4xl font-bold text-primary uppercase">
-            Experiência Profissional
+            {t('title')}
           </h2>
         </div>
 
@@ -84,7 +88,7 @@ export default function Experience() {
                         >
                           <span className="flex items-center gap-2 font-bold uppercase text-[10px]">
                             <Layers size={14} />
-                            {isExpanded ? '/// OCULTAR_PROJETOS_ENTREGUES' : '/// EXIBIR_PROJETOS_ENTREGUES'} ({exp.projects?.length})
+                            {isExpanded ? t('hideProjects') : t('showProjects')} ({exp.projects?.length})
                           </span>
                           {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                         </button>

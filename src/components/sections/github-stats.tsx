@@ -2,8 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Activity, GitBranch, Star, ShieldCheck, RefreshCw } from 'lucide-react';
+import { Github, Activity, GitBranch, ShieldCheck, RefreshCw } from 'lucide-react';
 import { siteConfig } from '@/data/site-config';
+import { useTranslations } from 'next-intl';
 
 interface GithubUser {
   public_repos: number;
@@ -16,6 +17,7 @@ interface GithubUser {
 }
 
 export function GithubStats() {
+  const t = useTranslations('GithubStats');
   const [stats, setStats] = useState<GithubUser | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -32,7 +34,6 @@ export function GithubStats() {
       } catch (err) {
         console.warn('Using fallback GitHub stats due to rate limit or connection:', err);
         setError(true);
-        // Fallback data
         setStats({
           public_repos: 18,
           followers: 12,
@@ -55,10 +56,10 @@ export function GithubStats() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div className="bg-void/90 p-6 sm:p-8 rounded-sm border border-borderTech backdrop-blur-sm flex-1 max-w-3xl">
             <span className="font-mono text-tacticalHighlight text-xs font-bold uppercase tracking-widest block mb-1">
-              /// GITHUB_LIVE_TELEMETRY
+              {t('tag')}
             </span>
             <h2 className="text-2xl md:text-3xl font-bold text-primary uppercase">
-              Métricas Técnicas em Tempo Real
+              {t('title')}
             </h2>
           </div>
           <div className="flex items-center gap-2 font-mono text-[11px] bg-void border border-borderTech px-3 py-1.5 rounded-sm w-fit text-steel">
@@ -77,29 +78,29 @@ export function GithubStats() {
           {/* Card 1: Public Repos */}
           <div className="bg-armor border border-borderTech p-5 clip-tech hover:border-tacticalHighlight transition-colors group">
             <div className="flex justify-between items-start mb-3">
-              <span className="font-mono text-[10px] text-steel uppercase">REPOSITÓRIOS PÚBLICOS</span>
+              <span className="font-mono text-[10px] text-steel uppercase">{t('publicRepos')}</span>
               <GitBranch size={18} className="text-tacticalHighlight group-hover:scale-110 transition-transform" />
             </div>
             <div className="text-3xl font-bold font-mono text-primary">
               {loading ? <RefreshCw className="animate-spin text-steel" size={24} /> : `${stats?.public_repos || 18}+`}
             </div>
-            <p className="font-mono text-[10px] text-steel mt-2">CÓDIGO ABERTO NO GITHUB</p>
+            <p className="font-mono text-[10px] text-steel mt-2">{t('publicReposSub')}</p>
           </div>
 
-          {/* Card 2: Core Stack & Ecosystem */}
+          {/* Card 2: Core Stack */}
           <div className="bg-armor border border-borderTech p-5 clip-tech hover:border-tacticalHighlight transition-colors group">
             <div className="flex justify-between items-start mb-3">
-              <span className="font-mono text-[10px] text-steel uppercase">STACK PRINCIPAL</span>
+              <span className="font-mono text-[10px] text-steel uppercase">{t('mainStack')}</span>
               <Activity size={18} className="text-tacticalHighlight group-hover:scale-110 transition-transform" />
             </div>
             <div className="text-xl font-bold font-mono text-primary">.NET / React / Node</div>
-            <p className="font-mono text-[10px] text-steel mt-2">CLEAN ARCHITECTURE & REACT 19</p>
+            <p className="font-mono text-[10px] text-steel mt-2">{t('mainStackSub')}</p>
           </div>
 
           {/* Card 3: Code Integrity */}
           <div className="bg-armor border border-borderTech p-5 clip-tech hover:border-tacticalHighlight transition-colors group">
             <div className="flex justify-between items-start mb-3">
-              <span className="font-mono text-[10px] text-steel uppercase">INTEGRIDADE TÉCNICA</span>
+              <span className="font-mono text-[10px] text-steel uppercase">{t('technicalIntegrity')}</span>
               <ShieldCheck size={18} className="text-emerald-400 group-hover:scale-110 transition-transform" />
             </div>
             <div className="text-3xl font-bold font-mono text-emerald-400">100%</div>
@@ -109,7 +110,7 @@ export function GithubStats() {
           {/* Card 4: GitHub Link */}
           <div className="bg-armor border border-borderTech p-5 clip-tech hover:border-tacticalHighlight transition-colors group flex flex-col justify-between">
             <div className="flex justify-between items-start mb-3">
-              <span className="font-mono text-[10px] text-steel uppercase">PERFIL GITHUB</span>
+              <span className="font-mono text-[10px] text-steel uppercase">{t('githubProfile')}</span>
               <Github size={18} className="text-tacticalHighlight group-hover:scale-110 transition-transform" />
             </div>
             <div>
@@ -121,7 +122,7 @@ export function GithubStats() {
                 className="inline-flex items-center gap-1 font-mono text-[10px] text-tacticalHighlight hover:underline mt-2"
                 aria-label="Acessar perfil de Jona Ferreira no GitHub"
               >
-                Acessar Repositórios &rarr;
+                {t('accessRepos')}
               </a>
             </div>
           </div>

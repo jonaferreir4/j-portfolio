@@ -1,13 +1,18 @@
 'use client';
 
-import { projects } from '@/data/projects';
+import { getProjects } from '@/data/projects';
 import { motion } from 'framer-motion';
 import { Github, ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 import { TacticalProjectPreview } from '@/components/ui/TacticalProjectPreview';
+import { useLocale, useTranslations } from 'next-intl';
 
 export default function Garage() {
+  const locale = useLocale() as 'pt' | 'en';
+  const projects = getProjects(locale);
+  const t = useTranslations('Garage');
+
   return (
     <section 
       id="projects" 
@@ -18,13 +23,13 @@ export default function Garage() {
         
         <div className="mb-16 text-center md:text-left bg-void/90 p-6 sm:p-8 rounded-sm border border-borderTech backdrop-blur-sm max-w-3xl">
           <span className="font-mono text-tacticalHighlight text-sm font-bold uppercase tracking-widest mb-2 block">
-            /// GARAGEM_DE_CODIFICAÇÃO
+            {t('tag')}
           </span>
           <h2 id="projects-heading" className="text-3xl md:text-4xl font-bold text-primary max-w-2xl">
-            Projetos Selecionados & Cases de Estudo
+            {t('title')}
           </h2>
           <p className="text-steel mt-4 max-w-2xl">
-            Uma seleção de aplicações web modernas, arquiteturas de back-end e experimentos de alta performance com análise técnica completa.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -41,7 +46,7 @@ export default function Garage() {
               <div className="group relative bg-armor border border-borderTech hover:border-tacticalHighlight transition-colors duration-200 clip-tech flex flex-col h-full">
                 <div className="grid grid-cols-1 lg:grid-cols-2 h-full relative z-10">
                     
-                    {/* VISUAL PREVIEW: REAL IMAGE OR TACTICAL HUD PREVIEW */}
+                    {/* VISUAL PREVIEW */}
                     <div className="relative h-52 lg:h-auto overflow-hidden border-r border-borderTech bg-void/50 transition-colors">
                         {project.image ? (
                           <Image 
@@ -104,7 +109,7 @@ export default function Garage() {
                                 className="w-full inline-flex items-center justify-between px-3 py-2 bg-void border border-borderTech hover:border-tacticalHighlight hover:bg-tacticalHighlight hover:text-white text-tacticalHighlight font-mono text-[11px] font-bold uppercase transition-all duration-200 group/link"
                                 aria-label={`Ver case study completo do projeto ${project.title}`}
                               >
-                                <span>Ver Case Study Completo</span>
+                                <span>{t('viewCaseStudy')}</span>
                                 <ArrowUpRight size={14} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
                               </Link>
                             </div>

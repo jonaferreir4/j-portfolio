@@ -2,10 +2,15 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Linkedin, Github, Send, CheckCircle2, Clock, Globe2, AlertCircle } from 'lucide-react';
-import { siteConfig } from '@/data/site-config';
+import { Linkedin, Github, Send, CheckCircle2, Clock, Globe2, AlertCircle } from 'lucide-react';
+import { getSiteConfig } from '@/data/site-config';
+import { useLocale, useTranslations } from 'next-intl';
 
 export default function Contact() {
+  const locale = useLocale() as 'pt' | 'en';
+  const siteConfig = getSiteConfig(locale);
+  const t = useTranslations('Contact');
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,15 +23,15 @@ export default function Contact() {
 
   const validate = () => {
     if (!formData.name.trim() || formData.name.length < 2) {
-      setErrorMessage('Por favor, informe seu nome.');
+      setErrorMessage(locale === 'en' ? 'Please enter your name.' : 'Por favor, informe seu nome.');
       return false;
     }
     if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      setErrorMessage('Por favor, insira um e-mail válido.');
+      setErrorMessage(locale === 'en' ? 'Please enter a valid email address.' : 'Por favor, insira um e-mail válido.');
       return false;
     }
     if (!formData.message.trim() || formData.message.length < 10) {
-      setErrorMessage('A mensagem deve conter pelo menos 10 caracteres.');
+      setErrorMessage(locale === 'en' ? 'Message must be at least 10 characters long.' : 'A mensagem deve conter pelo menos 10 caracteres.');
       return false;
     }
     setErrorMessage('');
@@ -42,11 +47,10 @@ export default function Contact() {
       const apiKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || '';
 
       if (!apiKey) {
-        // Fallback para envio direto via mailto se a chave ainda não foi inserida no .env.local
         const mailtoUrl = `mailto:${siteConfig.links.email || 'jonaferreira.dev@gmail.com'}?subject=${encodeURIComponent(
-          formData.subject || `Contato de ${formData.name}`
+          formData.subject || `Contact from ${formData.name}`
         )}&body=${encodeURIComponent(
-          `Nome: ${formData.name}\nE-mail: ${formData.email}\n\nMensagem:\n${formData.message}`
+          `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
         )}`;
         window.location.href = mailtoUrl;
         setStatus('success');
@@ -64,9 +68,9 @@ export default function Contact() {
           access_key: apiKey,
           name: formData.name,
           email: formData.email,
-          subject: formData.subject || `Oportunidade / Contato de ${formData.name}`,
+          subject: formData.subject || `Opportunity / Contact from ${formData.name}`,
           message: formData.message,
-          from_name: 'Portfólio Jona Ferreira'
+          from_name: 'Portfolio Jona Ferreira'
         })
       });
 
@@ -76,13 +80,15 @@ export default function Contact() {
         setStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
-        throw new Error(result.message || 'Falha ao enviar e-mail.');
+        throw new Error(result.message || 'Failed to send email.');
       }
     } catch (err) {
       console.error(err);
       setStatus('error');
       setErrorMessage(
-        'Erro na transmissão via API. Clique no botão de fallback para enviar diretamente via seu cliente de e-mail.'
+        locale === 'en'
+          ? 'Transmission error via API. Click fallback button to send directly via mail client.'
+          : 'Erro na transmissão via API. Clique no botão de fallback para enviar diretamente via seu cliente de e-mail.'
       );
     }
   };
@@ -97,19 +103,19 @@ export default function Contact() {
         
         <div className="mb-16 bg-void/90 p-6 sm:p-8 rounded-sm border border-borderTech backdrop-blur-sm max-w-3xl">
           <span className="font-mono text-tacticalHighlight text-xs font-bold uppercase tracking-widest block mb-1">
-            {'/// Communication_Channel'}
+            {t('tag')}
           </span>
           <h2 id="contact-heading" className="text-3xl md:text-4xl font-bold text-primary uppercase">
-            Iniciar Contato / Proposta
+            {t('title')}
           </h2>
           <p className="text-steel mt-2 max-w-xl text-sm">
-            Estou disponível para novas oportunidades, projetos de consultoria técnica e posições CLT/PJ.
+            {t('subtitle')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* CONTACT FORM (8 columns) */}
+          {/* CONTACT FORM */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -118,22 +124,22 @@ export default function Contact() {
             className="lg:col-span-7 bg-armor border border-borderTech p-6 sm:p-8 clip-tech"
           >
             <div className="flex justify-between items-center border-b border-borderTech pb-4 mb-6 font-mono text-xs">
-              <span className="text-tacticalHighlight font-bold uppercase">/// MESSAGE_DISPATCHER</span>
-              <span className="text-steel">STATUS: READY</span>
+              <span className="text-tacticalHighlight font-bold uppercase">{t('dispatcherTag')}</span>
+              <span className="text-steel">{t('statusReady')}</span>
             </div>
 
             {status === 'success' ? (
               <div className="p-6 bg-emerald-550/10 border border-emerald-500/30 rounded-sm space-y-3 text-center">
                 <CheckCircle2 size={40} className="text-emerald-400 mx-auto animate-bounce" />
-                <h3 className="text-lg font-bold font-mono text-primary uppercase">Mensagem Transmitida com Sucesso!</h3>
+                <h3 className="text-lg font-bold font-mono text-primary uppercase">{t('successTitle')}</h3>
                 <p className="text-steel text-xs leading-relaxed">
-                  Obrigado pelo contato. Retornarei sua mensagem em menos de 24 horas no e-mail informado.
+                  {t('successDesc')}
                 </p>
                 <button
                   onClick={() => setStatus('idle')}
                   className="mt-4 px-4 py-2 bg-tacticalHighlight text-white font-mono text-xs font-bold rounded-sm hover:bg-indigo-600 transition-colors"
                 >
-                  Enviar Nova Mensagem
+                  {t('newMsgBtn')}
                 </button>
               </div>
             ) : (
@@ -149,7 +155,7 @@ export default function Contact() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="contact-name" className="block text-steel uppercase mb-1 font-bold">
-                      Seu Nome <span className="text-tacticalHighlight">*</span>
+                      {t('nameLabel')} <span className="text-tacticalHighlight">*</span>
                     </label>
                     <input
                       id="contact-name"
@@ -164,7 +170,7 @@ export default function Contact() {
 
                   <div>
                     <label htmlFor="contact-email" className="block text-steel uppercase mb-1 font-bold">
-                      Seu E-mail <span className="text-tacticalHighlight">*</span>
+                      {t('emailLabel')} <span className="text-tacticalHighlight">*</span>
                     </label>
                     <input
                       id="contact-email"
@@ -180,7 +186,7 @@ export default function Contact() {
 
                 <div>
                   <label htmlFor="contact-subject" className="block text-steel uppercase mb-1 font-bold">
-                    Assunto
+                    {t('subjectLabel')}
                   </label>
                   <input
                     id="contact-subject"
@@ -194,7 +200,7 @@ export default function Contact() {
 
                 <div>
                   <label htmlFor="contact-message" className="block text-steel uppercase mb-1 font-bold">
-                    Mensagem <span className="text-tacticalHighlight">*</span>
+                    {t('messageLabel')} <span className="text-tacticalHighlight">*</span>
                   </label>
                   <textarea
                     id="contact-message"
@@ -214,10 +220,10 @@ export default function Contact() {
                   aria-label="Transmitir mensagem de contato"
                 >
                   {status === 'submitting' ? (
-                    <span>TRANSMITINDO_DADOS...</span>
+                    <span>{t('submitting')}</span>
                   ) : (
                     <>
-                      <span>TRANSMITIR MENSAGEM</span>
+                      <span>{t('submitBtn')}</span>
                       <Send size={16} />
                     </>
                   )}
@@ -226,7 +232,7 @@ export default function Contact() {
             )}
           </motion.div>
 
-          {/* OPERATIONAL METADATA & DIRECT CHANNELS (5 columns) */}
+          {/* METADATA & CHANNELS */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -234,10 +240,10 @@ export default function Contact() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="lg:col-span-5 space-y-6"
           >
-            {/* SLA & AVAILABILITY PANEL */}
+            {/* SLA PANEL */}
             <div className="bg-armor border border-borderTech p-6 clip-tech space-y-4 font-mono text-xs">
               <span className="text-tacticalHighlight font-bold uppercase block border-b border-borderTech pb-2">
-                /// OPERATIONAL_TELEMETRY
+                {t('telemetryTag')}
               </span>
 
               <div className="flex items-center gap-3">
@@ -245,7 +251,7 @@ export default function Contact() {
                   <Globe2 size={16} />
                 </div>
                 <div>
-                  <span className="text-steel uppercase text-[10px] block">FUSO HORÁRIO / LOCAL</span>
+                  <span className="text-steel uppercase text-[10px] block">{t('timezoneLabel')}</span>
                   <span className="text-primary font-bold">BRT (UTC-3) • Brasil</span>
                 </div>
               </div>
@@ -255,8 +261,8 @@ export default function Contact() {
                   <Clock size={16} />
                 </div>
                 <div>
-                  <span className="text-steel uppercase text-[10px] block">TEMPO MÉDIO DE RESPOSTA</span>
-                  <span className="text-primary font-bold">&lt; 24 HORAS ÚTEIS</span>
+                  <span className="text-steel uppercase text-[10px] block">{t('slaLabel')}</span>
+                  <span className="text-primary font-bold">{t('slaValue')}</span>
                 </div>
               </div>
 
@@ -265,7 +271,7 @@ export default function Contact() {
                   <span className="w-2 h-2 bg-emerald-400 rounded-full animate-ping block"></span>
                 </div>
                 <div>
-                  <span className="text-steel uppercase text-[10px] block">DISPONIBILIDADE ATUAL</span>
+                  <span className="text-steel uppercase text-[10px] block">{t('availabilityLabel')}</span>
                   <span className="text-primary font-bold">{siteConfig.status}</span>
                 </div>
               </div>
@@ -274,7 +280,7 @@ export default function Contact() {
             {/* DIRECT LINKS */}
             <div className="bg-armor border border-borderTech p-6 clip-tech space-y-4 font-mono text-xs">
               <span className="text-tacticalHighlight font-bold uppercase block border-b border-borderTech pb-2">
-                /// CANAIS_DIRETOS
+                {t('directChannelsTag')}
               </span>
 
               <a 

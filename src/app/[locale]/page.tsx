@@ -5,8 +5,16 @@ import Garage from "@/components/sections/garage";
 import Contact from "@/components/sections/contact";
 import Experience from "@/components/sections/experience";
 import { GithubStats } from "@/components/sections/github-stats";
+import { setRequestLocale } from "next-intl/server";
 
-export default function Home() {
+interface HomeProps {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function Home({ params }: HomeProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <main id="main-content" className="min-h-screen selection:bg-tacticalHighlight selection:text-white">
       <Hero />
@@ -19,7 +27,7 @@ export default function Home() {
       
       <footer className="py-8 bg-armor border-t border-borderTech text-center font-mono text-xs text-steel">
         <p>
-          © {new Date().getFullYear()} Jona Ferreira. Engenharia & Arquitetura de Software.
+          © {new Date().getFullYear()} Jona Ferreira. {locale === 'en' ? 'Software Engineering & Architecture.' : 'Engenharia & Arquitetura de Software.'}
         </p>
       </footer>
     </main>

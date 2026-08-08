@@ -1,0 +1,102 @@
+{
+  "Navbar": {
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "stack": "Expertise",
+    "contact": "Contact",
+    "changeTheme": "Toggle Theme"
+  },
+  "Hero": {
+    "contactBtn": "Get in Touch",
+    "downloadCvBtn": "Download Resume",
+    "currentStatus": "Current Status",
+    "stackCore": "CORE STACK",
+    "education": "EDUCATION",
+    "degree": "SOFTWARE ENG."
+  },
+  "About": {
+    "bioData": "/// Bio_Data",
+    "capabilityDistribution": "/// CAPABILITY_DISTRIBUTION",
+    "evidenceTitle": "Production & Architecture Evidence",
+    "academicBackground": "Academic Background",
+    "locationTimezone": "Location & Timezone",
+    "cap1Title": "FRONTEND ENG. (REACT 19 / NEXT 16)",
+    "cap1Tag": "PRODUCTION",
+    "cap1Desc": "Feature-First (Vertical Slice), White-Label multi-tenant in Next.js with OKLCH design tokens, Zustand, and TanStack Query.",
+    "cap2Title": "BACKEND ARCH (.NET CORE / NODE.JS)",
+    "cap2Tag": "ROBUST",
+    "cap2Desc": "Clean Architecture in C#/.NET 8, RESTful APIs in Node.js, real-time duplex WebSockets via SignalR, and Java/AWS SES microservices.",
+    "cap3Title": "SECURITY & LEGACY (PHP / SQL / RBAC)",
+    "cap3Tag": "VERIFIED",
+    "cap3Desc": "Production legacy system refactoring, multi-role RBAC access control, and secure authentication.",
+    "verified": "VERIFIED"
+  },
+  "Experience": {
+    "workHistory": "/// Work_History",
+    "title": "Work Experience",
+    "hideProjects": "/// HIDE_DELIVERED_PROJECTS",
+    "showProjects": "/// SHOW_DELIVERED_PROJECTS"
+  },
+  "Garage": {
+    "tag": "/// CODING_GARAGE",
+    "title": "Selected Projects & Case Studies",
+    "subtitle": "A curated collection of modern web apps, backend architectures, and high-performance engineering experiments with full technical breakdowns.",
+    "viewCaseStudy": "View Full Case Study"
+  },
+  "GithubStats": {
+    "tag": "/// GITHUB_LIVE_TELEMETRY",
+    "title": "Real-Time Technical Telemetry",
+    "publicRepos": "PUBLIC REPOSITORIES",
+    "publicReposSub": "OPEN SOURCE ON GITHUB",
+    "mainStack": "PRIMARY STACK",
+    "mainStackSub": "CLEAN ARCHITECTURE & REACT 19",
+    "technicalIntegrity": "TECHNICAL INTEGRITY",
+    "githubProfile": "GITHUB PROFILE",
+    "accessRepos": "Access Repositories →"
+  },
+  "Stack": {
+    "tag": "Technical Arsenal",
+    "title": "Tech Stack & Engineering Tools",
+    "subtitle": "A versatile ecosystem. From modern software development with .NET and React to critical maintenance of legacy PHP systems."
+  },
+  "Contact": {
+    "tag": "/// Communication_Channel",
+    "title": "Get in Touch / Proposals",
+    "subtitle": "Open for new engineering opportunities, technical consulting, and full-time / contract roles.",
+    "dispatcherTag": "/// MESSAGE_DISPATCHER",
+    "statusReady": "STATUS: READY",
+    "nameLabel": "Your Name",
+    "emailLabel": "Your Email",
+    "subjectLabel": "Subject",
+    "messageLabel": "Message",
+    "submitBtn": "TRANSMIT MESSAGE",
+    "submitting": "TRANSMITTING_DATA...",
+    "successTitle": "Message Transmitted Successfully!",
+    "successDesc": "Thank you for reaching out. I will respond to your message within 24 hours at the provided email address.",
+    "newMsgBtn": "Send New Message",
+    "telemetryTag": "/// OPERATIONAL_TELEMETRY",
+    "timezoneLabel": "TIMEZONE / LOCATION",
+    "slaLabel": "AVERAGE RESPONSE SLA",
+    "slaValue": "< 24 BUSINESS HOURS",
+    "availabilityLabel": "CURRENT AVAILABILITY",
+    "directChannelsTag": "/// DIRECT_CHANNELS"
+  },
+  "CaseStudy": {
+    "backLink": "/// BACK_TO_PROJECTS",
+    "repoBtn": "GitHub Repository",
+    "demoBtn": "Live Demo",
+    "resultsTag": "/// 01_MEASURED_RESULTS_AND_IMPACT",
+    "diagramTag": "/// 02_ARCHITECTURE_AND_FLOW_DIAGRAM",
+    "problemTag": "/// 03_BUSINESS_CONTEXT_AND_CHALLENGES",
+    "challengesTitle": "Identified Technical Challenges:",
+    "archTag": "/// 04_ARCHITECTURAL_DECISIONS",
+    "tradeoffsTag": "/// 05_TECHNICAL_TRADEOFFS_AND_COMPROMISES",
+    "decisionAdopted": "ADOPTED DECISION:",
+    "rationale": "✓ RATIONALE (WHY):",
+    "downside": "⚠ DOWNSIDE (TRADE-OFF):",
+    "techUsed": "TECHNOLOGIES USED IN CASE",
+    "viewAll": "View All Projects →",
+    "notFound": "Project Not Found"
+  }
+}

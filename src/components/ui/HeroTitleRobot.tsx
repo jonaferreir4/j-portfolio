@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { siteConfig } from '@/data/site-config';
+import { getSiteConfig } from '@/data/site-config';
 import { useClickBreaker } from '@/providers/ClickBreakerProvider';
+import { useLocale } from 'next-intl';
 
 interface LetterOffset {
   x: number;
@@ -11,7 +12,6 @@ interface LetterOffset {
   rotate: number;
 }
 
-// Interpolate color from tacticalHighlight (#6366f1) to indigo-400 (#818cf8)
 function getDeveloperGradientColor(index: number, total: number): string {
   if (total <= 1) return 'rgb(99, 102, 241)';
   const ratio = index / (total - 1);
@@ -22,13 +22,15 @@ function getDeveloperGradientColor(index: number, total: number): string {
 }
 
 export function HeroTitleRobot() {
+  const locale = useLocale() as 'pt' | 'en';
+  const siteConfig = getSiteConfig(locale);
   const { status, triggerTitleBreak } = useClickBreaker();
+
   const word1 = siteConfig.role.split(' ')[0] || 'Fullstack';
-  const word2 = siteConfig.role.split(' ')[1] || 'Developer';
+  const word2 = siteConfig.role.split(' ').slice(1).join(' ') || 'Developer';
 
   const [offsets, setOffsets] = useState<{ [key: string]: LetterOffset }>({});
 
-  // When central robot starts fixing, smoothly spring letters back to origin
   useEffect(() => {
     if (status === 'fixing') {
       setOffsets({});
@@ -49,20 +51,18 @@ export function HeroTitleRobot() {
       return { ...prev, [key]: updatedPos };
     });
 
-    // If robot is already active, snap all letters back on arrival at the new point
     if (status === 'fixing' || status === 'scolding' || status === 'traveling') {
       setTimeout(() => {
         setOffsets({});
       }, 450);
     }
 
-    // Call single central robot to come fix the title!
     triggerTitleBreak(clientX, clientY);
   };
 
   return (
     <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-primary leading-[1.15] tracking-tight select-none pt-2 pb-1">
-      {/* Word 1: Fullstack */}
+      {/* Word 1: Fullstack / Desenvolvedor */}
       <span className="inline-flex whitespace-nowrap">
         {word1.split('').map((char, i) => {
           const key = `w1-${i}`;
@@ -96,7 +96,7 @@ export function HeroTitleRobot() {
 
       <br />
 
-      {/* Word 2: Developer (Continuous Gradient identical to original) */}
+      {/* Word 2: Developer / Fullstack */}
       <span className="inline-flex whitespace-nowrap">
         {word2.split('').map((char, i) => {
           const key = `w2-${i}`;

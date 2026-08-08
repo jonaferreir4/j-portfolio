@@ -1,11 +1,16 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { siteConfig } from '@/data/site-config';
+import { getSiteConfig } from '@/data/site-config';
 import { parseFormattedText } from '@/utils/text-parser';
 import { ShieldCheck, Cpu, Code2 } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
 
 export default function About() {
+  const locale = useLocale() as 'pt' | 'en';
+  const siteConfig = getSiteConfig(locale);
+  const t = useTranslations('About');
+
   return (
     <section 
       id="about" 
@@ -26,7 +31,7 @@ export default function About() {
               className="mb-8"
             >
               <span className="font-mono text-tacticalHighlight text-xs tracking-widest block mb-2 uppercase">
-                {'/// Bio_Data'}
+                {t('bioData')}
               </span>
               <h2 
                 id="about-heading"
@@ -58,19 +63,19 @@ export default function About() {
               className="grid grid-cols-2 gap-4 pt-6 mt-6 border-t border-borderTech font-mono text-xs"
             >
               <div>
-                 <span className="block text-steel uppercase mb-1">Formação Acadêmica</span>
+                 <span className="block text-steel uppercase mb-1">{t('academicBackground')}</span>
                  <span className="text-primary block font-bold">Engenharia de Software (UFC)</span>
                  <span className="text-steel/70">Téc. Informática (IFCE)</span>
               </div>
               <div>
-                 <span className="block text-steel uppercase mb-1">Localização & Fuso</span>
+                 <span className="block text-steel uppercase mb-1">{t('locationTimezone')}</span>
                  <span className="text-primary block font-bold">Brasil (Remote)</span>
                  <span className="text-steel/70">BRT (UTC-3)</span>
               </div>
             </motion.div>
           </div>
 
-          {/* CAPABILITY CARDS WITH REAL ENGINEERING EVIDENCE */}
+          {/* CAPABILITY CARDS */}
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -82,9 +87,9 @@ export default function About() {
             <div className="flex justify-between items-start border-b border-borderTech pb-4">
               <div>
                 <span className="font-mono text-xs text-tacticalHighlight font-bold block uppercase">
-                  /// CAPABILITY_DISTRIBUTION
+                  {t('capabilityDistribution')}
                 </span>
-                <span className="font-mono text-[10px] text-steel">Evidências de Produção & Arquitetura</span>
+                <span className="font-mono text-[10px] text-steel">{t('evidenceTitle')}</span>
               </div>
               <div className="flex gap-1 group-hover:scale-110 transition-transform duration-300">
                 <div className="w-1 h-3 bg-primary"></div>
@@ -100,14 +105,14 @@ export default function About() {
                 <div className="flex items-center justify-between mb-1.5">
                   <div className="flex items-center gap-2 text-primary font-bold text-xs">
                     <Code2 size={14} className="text-tacticalHighlight" />
-                    <span>FRONTEND ENG. (REACT 19 / NEXT 16)</span>
+                    <span>{t('cap1Title')}</span>
                   </div>
                   <span className="text-[9px] text-tacticalHighlight bg-tacticalHighlight/10 px-1.5 py-0.5 rounded font-bold">
-                    PRODUÇÃO
+                    {t('cap1Tag')}
                   </span>
                 </div>
                 <p className="text-[11px] text-steel leading-snug">
-                  Feature-First (Vertical Slice), White-Label multi-tenant em Next.js com tokens em OKLCH, Zustand e TanStack Query.
+                  {t('cap1Desc')}
                 </p>
               </div>
 
@@ -116,14 +121,14 @@ export default function About() {
                 <div className="flex items-center justify-between mb-1.5">
                   <div className="flex items-center gap-2 text-primary font-bold text-xs">
                     <Cpu size={14} className="text-tacticalHighlight" />
-                    <span>BACKEND ARCH (.NET CORE / NODE.JS)</span>
+                    <span>{t('cap2Title')}</span>
                   </div>
                   <span className="text-[9px] text-primary bg-primary/10 px-1.5 py-0.5 rounded font-bold">
-                    ROBUSTO
+                    {t('cap2Tag')}
                   </span>
                 </div>
                 <p className="text-[11px] text-steel leading-snug">
-                  Clean Architecture em C#/.NET 8, APIs RESTful em Node.js, WebSockets duplex em tempo real via SignalR e microsserviços Java/AWS SES.
+                  {t('cap2Desc')}
                 </p>
               </div>
 
@@ -132,14 +137,14 @@ export default function About() {
                 <div className="flex items-center justify-between mb-1.5">
                   <div className="flex items-center gap-2 text-primary font-bold text-xs">
                     <ShieldCheck size={14} className="text-emerald-400" />
-                    <span>SEGURANÇA & LEGADO (PHP / SQL / RBAC)</span>
+                    <span>{t('cap3Title')}</span>
                   </div>
                   <span className="text-[9px] text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded font-bold">
-                    VERIFICADO
+                    {t('cap3Tag')}
                   </span>
                 </div>
                 <p className="text-[11px] text-steel leading-snug">
-                  Refatoração de sistemas legados em produção, controle de acesso RBAC com múltiplos perfis e autenticação segura.
+                  {t('cap3Desc')}
                 </p>
               </div>
 
@@ -149,7 +154,7 @@ export default function About() {
               <span>CURRENT_STATUS: KASTERWEB FE LEAD</span>
               <span className="text-emerald-400 flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                VERIFIED
+                {t('verified')}
               </span>
             </div>
           </motion.div>

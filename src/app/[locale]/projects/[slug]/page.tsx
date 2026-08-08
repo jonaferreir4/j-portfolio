@@ -1,28 +1,42 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
 import { Metadata } from 'next';
-import { ArrowLeft, Github, ExternalLink, Terminal, ShieldCheck, Cpu, GitMerge } from 'lucide-react';
-import { caseStudies } from '@/data/case-studies';
+import { ArrowLeft, Github, ExternalLink, Cpu } from 'lucide-react';
+import { getCaseStudies } from '@/data/case-studies';
 import { TacticalProjectPreview } from '@/components/ui/TacticalProjectPreview';
+import { routing } from '@/i18n/routing';
+import { Link } from '@/i18n/routing';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { Locale } from '@/data/site-config';
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return Object.keys(caseStudies).map((slug) => ({
-    slug,
-  }));
+  const caseStudyKeys = Object.keys(getCaseStudies('pt'));
+  const params: { locale: string; slug: string }[] = [];
+
+  for (const locale of routing.locales) {
+    for (const slug of caseStudyKeys) {
+      params.push({ locale, slug });
+    }
+  }
+
+  return params;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  const isLocaleValid = routing.locales.includes(locale as any);
+  const currentLocale = (isLocaleValid ? locale : 'pt') as Locale;
+
+  const caseStudies = getCaseStudies(currentLocale);
   const study = caseStudies[slug];
 
   if (!study) {
     return {
-      title: 'Projeto Não Encontrado | Jona Ferreira',
+      title: currentLocale === 'en' ? 'Project Not Found | Jona Ferreira' : 'Projeto Não Encontrado | Jona Ferreira',
     };
   }
 
@@ -30,7 +44,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `Case Study: ${study.title} | Jona Ferreira`,
     description: study.summary,
     openGraph: {
-      title: `Case Study: ${study.title} - Engenharia & Arquitetura`,
+      title: `Case Study: ${study.title} - ${currentLocale === 'en' ? 'Engineering & Architecture' : 'Engenharia & Arquitetura'}`,
       description: study.summary,
       type: 'article',
     },
@@ -38,7 +52,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function CaseStudyPage({ params }: PageProps) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  if (!routing.locales.includes(locale as any)) {
+    notFound();
+  }
+
+  const currentLocale = locale as Locale;
+  setRequestLocale(currentLocale);
+  const t = await getTranslations('CaseStudy');
+
+  const caseStudies = getCaseStudies(currentLocale);
   const study = caseStudies[slug];
 
   if (!study) {
@@ -54,9 +77,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
           <Link 
             href="/#projects" 
             className="inline-flex items-center gap-2 text-steel hover:text-tacticalHighlight transition-colors"
-            aria-label="Voltar para a seção de projetos"
+            aria-label={t('backLink')}
           >
-            <ArrowLeft size={16} /> /// VOLTAR_PARA_PROJETOS
+            <ArrowLeft size={16} /> {t('backLink')}
           </Link>
           <span className="text-tacticalHighlight font-bold">
             CASE_STUDY: {study.codeName}
@@ -89,9 +112,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-tacticalHighlight text-white font-mono text-xs font-bold rounded-sm hover:bg-indigo-600 transition-colors"
-                aria-label={`Ver repositório do projeto ${study.title} no GitHub`}
+                aria-label={`GitHub Repository for ${study.title}`}
               >
-                <Github size={16} /> Repositório GitHub
+                <Github size={16} /> {t('repoBtn')}
               </a>
             )}
             {study.demoLink && (
@@ -100,9 +123,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 border border-borderTech bg-void text-primary font-mono text-xs font-bold rounded-sm hover:border-tacticalHighlight hover:text-tacticalHighlight transition-colors"
-                aria-label={`Ver demonstração ao vivo do projeto ${study.title}`}
+                aria-label={`Live Demo for ${study.title}`}
               >
-                <ExternalLink size={16} /> Live Demo
+                <ExternalLink size={16} /> {t('demoBtn')}
               </a>
             )}
           </div>
@@ -111,7 +134,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         {/* METRICS & IMPACT SUMMARY */}
         <section aria-labelledby="results-heading" className="space-y-4">
           <h2 id="results-heading" className="font-mono text-xs text-tacticalHighlight font-bold tracking-widest uppercase">
-            /// 01_RESULTADOS_MEDIDOS_E_IMPACTO
+            {t('resultsTag')}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {study.results.map((res, idx) => (
@@ -130,10 +153,10 @@ export default async function CaseStudyPage({ params }: PageProps) {
           </div>
         </section>
 
-        {/* TACTICAL VISUAL SCHEMATIC / PREVIEW */}
+        {/* VISUAL SCHEMATIC / PREVIEW */}
         <section aria-labelledby="diagram-heading" className="space-y-4">
           <h2 id="diagram-heading" className="font-mono text-xs text-tacticalHighlight font-bold tracking-widest uppercase">
-            /// 02_DIAGRAMA_DE_ARQUITETURA_E_FLUXO
+            {t('diagramTag')}
           </h2>
           <div className="bg-armor border border-borderTech p-6 clip-tech space-y-4">
             <div className="h-64 w-full">
@@ -153,7 +176,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         {/* PROBLEM & BUSINESS CONTEXT */}
         <section aria-labelledby="problem-heading" className="space-y-4">
           <h2 id="problem-heading" className="font-mono text-xs text-tacticalHighlight font-bold tracking-widest uppercase">
-            /// 03_CONTEXTO_DE_NEGÓCIO_E_DESAFIOS
+            {t('problemTag')}
           </h2>
           <div className="bg-armor border border-borderTech p-6 sm:p-8 clip-tech space-y-4">
             <p className="text-steel text-sm sm:text-base leading-relaxed">
@@ -161,7 +184,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
             </p>
             <div className="space-y-2 pt-2">
               <span className="font-mono text-xs text-primary font-bold uppercase block">
-                Desafios Técnicos Identificados:
+                {t('challengesTitle')}
               </span>
               <ul className="space-y-2 text-steel text-xs sm:text-sm">
                 {study.problem.challenges.map((challenge, idx) => (
@@ -178,7 +201,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
         {/* ARCHITECTURAL DECISIONS */}
         <section aria-labelledby="architecture-heading" className="space-y-4">
           <h2 id="architecture-heading" className="font-mono text-xs text-tacticalHighlight font-bold tracking-widest uppercase">
-            /// 04_DECISÕES_DE_ARQUITETURA
+            {t('archTag')}
           </h2>
           <div className="bg-armor border border-borderTech p-6 sm:p-8 clip-tech space-y-6">
             <p className="text-steel text-sm sm:text-base leading-relaxed">
@@ -204,22 +227,22 @@ export default async function CaseStudyPage({ params }: PageProps) {
         {/* TECHNICAL TRADEOFFS */}
         <section aria-labelledby="tradeoffs-heading" className="space-y-4">
           <h2 id="tradeoffs-heading" className="font-mono text-xs text-tacticalHighlight font-bold tracking-widest uppercase">
-            /// 05_TRADE_OFFS_E_COMPROMISSOS_TÉCNICOS
+            {t('tradeoffsTag')}
           </h2>
           <div className="bg-armor border border-borderTech p-6 clip-tech space-y-4">
             {study.tradeoffs.map((item, idx) => (
               <div key={idx} className="space-y-3 font-mono text-xs">
                 <div className="p-3 bg-void border-l-4 border-tacticalHighlight">
-                  <span className="text-steel uppercase text-[10px] block mb-1">DECISÃO ADOTADA:</span>
+                  <span className="text-steel uppercase text-[10px] block mb-1">{t('decisionAdopted')}</span>
                   <span className="text-primary font-bold text-sm block">{item.decision}</span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
                   <div className="p-3 bg-emerald-550/10 border border-emerald-500/20 text-emerald-300">
-                    <span className="text-emerald-400 font-bold block mb-1">✓ RATIONALE (POR QUE):</span>
+                    <span className="text-emerald-400 font-bold block mb-1">{t('rationale')}</span>
                     <span className="text-steel">{item.reason}</span>
                   </div>
                   <div className="p-3 bg-rose-950/10 border border-rose-500/20 text-rose-300">
-                    <span className="text-rose-400 font-bold block mb-1">⚠ DOWNSIDE (TRADE-OFF):</span>
+                    <span className="text-rose-400 font-bold block mb-1">{t('downside')}</span>
                     <span className="text-steel">{item.downside}</span>
                   </div>
                 </div>
@@ -231,11 +254,11 @@ export default async function CaseStudyPage({ params }: PageProps) {
         {/* TECH STACK FOOTER */}
         <section className="bg-armor border border-borderTech p-6 clip-tech flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-xs">
           <div>
-            <span className="text-steel uppercase text-[10px] block mb-2">TECNOLOGIAS UTILIZADAS NO CASE</span>
+            <span className="text-steel uppercase text-[10px] block mb-2">{t('techUsed')}</span>
             <div className="flex flex-wrap gap-2">
-              {study.stack.map((t) => (
-                <span key={t} className="px-2.5 py-1 bg-void border border-borderTech text-primary font-bold">
-                  {t}
+              {study.stack.map((tech) => (
+                <span key={tech} className="px-2.5 py-1 bg-void border border-borderTech text-primary font-bold">
+                  {tech}
                 </span>
               ))}
             </div>
@@ -243,9 +266,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
           <Link 
             href="/#projects" 
             className="px-6 py-3 bg-tacticalHighlight text-white font-bold rounded-sm text-center hover:bg-indigo-600 transition-colors shrink-0"
-            aria-label="Voltar para a página inicial"
+            aria-label={t('viewAll')}
           >
-            Ver Todos os Projetos &rarr;
+            {t('viewAll')}
           </Link>
         </section>
 

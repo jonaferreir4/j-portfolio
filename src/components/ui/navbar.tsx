@@ -1,18 +1,14 @@
-'use client'
+'use client';
+
 import { useState, useEffect } from 'react';
 import { ThemeToggle } from './theme-toggle';
+import { LanguageToggle } from './language-toggle';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const navLinks = [
-  { name: 'Sobre', href: '#about' },
-  { name: 'Experiência', href: '#experience' },
-  { name: 'Projetos', href: '#projects' },
-  { name: 'Expertise', href: '#stack' },
-  { name: 'Contato', href: '#contact' },
-];
+import { useTranslations } from 'next-intl';
 
 export function Navbar() {
+  const t = useTranslations('Navbar');
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -21,6 +17,14 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const navLinks = [
+    { name: t('about'), href: '#about' },
+    { name: t('experience'), href: '#experience' },
+    { name: t('projects'), href: '#projects' },
+    { name: t('stack'), href: '#stack' },
+    { name: t('contact'), href: '#contact' },
+  ];
 
   return (
     <header 
@@ -35,7 +39,7 @@ export function Navbar() {
           Jona<span className="text-steel">Ferreira</span>
         </a>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
             <a 
               key={link.name} 
@@ -45,7 +49,8 @@ export function Navbar() {
               {link.name}
             </a>
           ))}
-          <div className="pl-4 border-l border-borderTech">
+          <div className="pl-4 border-l border-borderTech flex items-center gap-2">
+             <LanguageToggle />
              <ThemeToggle />
           </div>
         </nav>
@@ -53,6 +58,7 @@ export function Navbar() {
         <button 
           className="md:hidden text-primary"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Abrir menu"
         >
           {mobileMenuOpen ? <X /> : <Menu />}
         </button>
@@ -78,7 +84,10 @@ export function Navbar() {
                 </a>
               ))}
               <div className="pt-4 border-t border-borderTech flex justify-between items-center">
-                <span className="text-xs text-steel">Mudar Tema</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-xs text-steel">{t('changeTheme')}</span>
+                  <LanguageToggle />
+                </div>
                 <ThemeToggle />
               </div>
             </nav>

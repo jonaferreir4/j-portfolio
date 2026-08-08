@@ -4,12 +4,17 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Download, Linkedin, Github, Cpu } from 'lucide-react';
 import Image from 'next/image';
 import MeAvatar from '@/assets/images/me-avatar.png';
-import { siteConfig } from '@/data/site-config';
+import { getSiteConfig } from '@/data/site-config';
 import { parseFormattedText } from '@/utils/text-parser';
+import { useLocale, useTranslations } from 'next-intl';
 
 export default function Hero() {
+  const locale = useLocale() as 'pt' | 'en';
+  const siteConfig = getSiteConfig(locale);
+  const t = useTranslations('Hero');
+
   const word1 = siteConfig.role.split(' ')[0] || 'Fullstack';
-  const word2 = siteConfig.role.split(' ')[1] || 'Developer';
+  const word2 = siteConfig.role.split(' ').slice(1).join(' ') || 'Developer';
 
   return (
     <section
@@ -58,21 +63,21 @@ export default function Hero() {
                 className="px-8 py-3.5 bg-tacticalHighlight text-white font-bold rounded-sm hover:bg-indigo-600 hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(99,102,241,0.4)] transition-all duration-300 flex items-center gap-2"
                 aria-label="Ir para seção de contato com Jona Ferreira"
               >
-                Entrar em Contato <ArrowRight size={18} />
+                {t('contactBtn')} <ArrowRight size={18} />
               </a>
 
               <a
-                href={siteConfig.links.cv}
+                href={siteConfig.cvLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-3.5 border border-borderTech bg-armor text-primary font-medium rounded-sm hover:border-tacticalHighlight hover:text-tacticalHighlight hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(99,102,241,0.1)] transition-all duration-300 flex items-center gap-2"
                 aria-label="Baixar currículo PDF de Jona Ferreira"
               >
-                <Download size={18} /> Download CV
+                <Download size={18} /> {t('downloadCvBtn')}
               </a>
             </motion.div>
 
-            {/* Social links — visible immediately */}
+            {/* Social links */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -131,7 +136,7 @@ export default function Hero() {
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-steel uppercase">Status Atual</p>
+                    <p className="text-xs font-bold text-steel uppercase">{t('currentStatus')}</p>
                     <p className="text-sm font-bold text-primary">{siteConfig.status}</p>
                   </div>
                 </div>
@@ -142,7 +147,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* TACTICAL HUD METRICS BAR ANCHORED AT BOTTOM OF HERO */}
+      {/* TACTICAL HUD METRICS BAR */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -155,7 +160,7 @@ export default function Hero() {
               <Cpu size={18} />
             </div>
             <div>
-              <span className="block text-steel text-[10px] uppercase">STACK CORE</span>
+              <span className="block text-steel text-[10px] uppercase">{t('stackCore')}</span>
               <span className="text-primary font-bold text-sm">.NET • REACT • NODE</span>
             </div>
           </div>
@@ -165,8 +170,8 @@ export default function Hero() {
               <span className="font-extrabold text-tacticalHighlight text-xs">UFC</span>
             </div>
             <div>
-              <span className="block text-steel text-[10px] uppercase">FORMAÇÃO</span>
-              <span className="text-primary font-bold text-sm">ENG. SOFTWARE</span>
+              <span className="block text-steel text-[10px] uppercase">{t('education')}</span>
+              <span className="text-primary font-bold text-sm">{t('degree')}</span>
             </div>
           </div>
         </div>
