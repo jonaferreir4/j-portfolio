@@ -19,9 +19,9 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: t('about'), href: '#about' },
-    { name: t('experience'), href: '#experience' },
     { name: t('projects'), href: '#projects' },
+    { name: t('experience'), href: '#experience' },
+    { name: t('about'), href: '#about' },
     { name: t('stack'), href: '#stack' },
     { name: t('contact'), href: '#contact' },
   ];

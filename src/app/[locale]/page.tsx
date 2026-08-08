@@ -18,11 +18,11 @@ export default async function Home({ params }: HomeProps) {
   return (
     <main id="main-content" className="min-h-screen selection:bg-tacticalHighlight selection:text-white">
       <Hero />
-      <About /> 
-      <Experience />
       <Garage />
-      <GithubStats />
+      <Experience />
+      <About />
       <Stack /> 
+      <GithubStats />
       <Contact />
       
       <footer className="py-8 bg-armor border-t border-borderTech text-center font-mono text-xs text-steel">
