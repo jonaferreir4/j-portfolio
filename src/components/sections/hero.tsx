@@ -97,29 +97,31 @@ export default function Hero() {
 
           </motion.div>
 
-          {/* AVATAR FRAME */}
+          {/* AVATAR FRAME WITH LEVITATION FLOATING ANIMATION */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="lg:col-span-5 flex justify-center lg:justify-end"
           >
-            <div className="relative w-[300px] sm:w-[340px] h-[370px] sm:h-[410px] group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+            <motion.div
+              animate={{ y: [0, -12, 0] }}
+              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+              className="relative w-[300px] sm:w-[340px] h-[370px] sm:h-[410px] group"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl blur-lg opacity-25 group-hover:opacity-40 transition duration-1000"></div>
 
-              <div className="relative w-full h-full bg-white/90 dark:bg-zinc-900/90 border border-slate-200 dark:border-zinc-800 p-3 rounded-2xl shadow-xl dark:shadow-2xl">
-                <div className="relative w-full h-full overflow-hidden rounded-xl bg-slate-900 dark:bg-zinc-950">
-                  <Image
-                    src={MeAvatar}
-                    alt={`${siteConfig.name} - Avatar`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 340px"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    priority
-                  />
-                </div>
+              <div className="relative w-full h-full overflow-hidden rounded-2xl shadow-2xl bg-slate-900 dark:bg-zinc-950">
+                <Image
+                  src={MeAvatar}
+                  alt={`${siteConfig.name} - Avatar`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 340px"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  priority
+                />
               </div>
-            </div>
+            </motion.div>
           </motion.div>
 
         </div>
