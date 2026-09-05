@@ -26,6 +26,7 @@ export function getProjects(locale: Locale = 'pt'): ProjectItem[] {
         ? "Visual management platform (Kanban) focused on UX. Built with React 19, Zustand, and TanStack Query for optimized cache and state management."
         : "Plataforma de gestão visual (Kanban) focada em UX. Utiliza React 19, Zustand e TanStack Query para cache e estado otimizado.",
       repoLink: "https://github.com/jonaferreir4/GestLab",
+      image: "/images/crm-preview.png",
       previewType: "kanban",
       color: "from-blue-600 to-cyan-500",
       specs: {
@@ -98,6 +99,7 @@ export function getProjects(locale: Locale = 'pt'): ProjectItem[] {
         ? "High-speed URL shortener focused on infrastructure, using Traefik as Reverse Proxy."
         : "Encurtador de URL de alta velocidade focado em infraestrutura, utilizando Traefik como Proxy Reverso.",
       repoLink: "https://github.com/jonaferreir4/Smaller",
+      image: "/images/smaller.gif",
       previewType: "proxy",
       color: "from-slate-600 to-slate-800",
       specs: {

@@ -159,11 +159,12 @@ export default async function CaseStudyPage({ params }: PageProps) {
             {t('diagramTag')}
           </h2>
           <div className="bg-white/90 dark:bg-zinc-900/60 backdrop-blur-xl border border-slate-200 dark:border-zinc-800/80 p-6 rounded-2xl space-y-4 shadow-md dark:shadow-lg">
-            <div className="h-64 w-full rounded-xl overflow-hidden bg-slate-900">
+            <div className="min-h-[280px] w-full rounded-xl overflow-hidden bg-slate-900">
               <TacticalProjectPreview 
                 codeName={study.codeName}
                 type={study.diagram.type}
                 title={study.title}
+                image={study.image}
               />
             </div>
             <div className="font-mono text-xs bg-slate-50 dark:bg-zinc-950/80 border border-slate-200 dark:border-zinc-800/80 p-4 rounded-xl text-steel">

@@ -50,21 +50,12 @@ export default function Garage() {
                     
                     {/* VISUAL PREVIEW */}
                     <div className="relative h-56 lg:h-auto overflow-hidden border-b lg:border-b-0 lg:border-r border-slate-200 dark:border-zinc-800/80 bg-slate-900 dark:bg-zinc-950/60">
-                        {project.image ? (
-                          <Image 
-                            src={project.image} 
-                            alt={project.title}
-                            fill
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            className="object-cover transition-all duration-500 group-hover:scale-105"
-                          />
-                        ) : (
-                          <TacticalProjectPreview 
-                            codeName={project.codeName}
-                            type={project.previewType}
-                            title={project.title}
-                          />
-                        )}
+                        <TacticalProjectPreview 
+                          codeName={project.codeName}
+                          type={project.previewType}
+                          title={project.title}
+                          image={project.image}
+                        />
   
                         <div className="absolute top-3 left-3 bg-slate-900/90 dark:bg-zinc-950/90 px-2.5 py-1 text-[10px] font-mono text-indigo-400 border border-slate-700 dark:border-zinc-800 rounded-full z-20 shadow-sm backdrop-blur-md">
                             ID: {project.codeName}

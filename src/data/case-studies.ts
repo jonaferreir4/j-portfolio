@@ -11,6 +11,7 @@ export interface CaseStudy {
   summary: string;
   repoLink?: string;
   demoLink?: string;
+  image?: string;
   specs: Record<string, string>;
   problem: {
     context: string;
@@ -57,6 +58,7 @@ export function getCaseStudies(locale: Locale = 'pt'): Record<string, CaseStudy>
         ? "Real-time task management platform (Kanban) built for the Learning Lab ecosystem at UFC, focusing on reactivity, predictable state management, and fluid UX."
         : "Plataforma de gestão de atividades em tempo real (Kanban) desenvolvida para o ecossistema Learning Lab na UFC, focando em reatividade, controle de estado previsível e UX fluida.",
       repoLink: "https://github.com/jonaferreir4/GestLab",
+      image: "/images/crm-preview.png",
       specs: {
         Engine: "React 19 + Vite",
         Transmission: "Zustand",
@@ -217,6 +219,7 @@ export function getCaseStudies(locale: Locale = 'pt'): Record<string, CaseStudy>
         ? "High-performance gaming e-commerce in Next.js and Node.js. Project focused on eliminating code smells, clean architecture, and modern UI with Shadcn."
         : "E-commerce de jogos de alta performance em Next.js e Node.js. Projeto totalmente focado na eliminação de code smells, arquitetura limpa e UI moderna com Shadcn.",
       repoLink: "https://github.com/csvitor-dev/next-store-gaming",
+      image: "/images/store-gg.png",
       specs: {
         Engine: "Node.js / Next.js (App Router)",
         Structure: "Clean Code & SOLID",
@@ -373,6 +376,7 @@ export function getCaseStudies(locale: Locale = 'pt'): Record<string, CaseStudy>
         ? "Ultra-fast URL shortener built with focus on modern infrastructure, Docker Compose orchestration, and Traefik Reverse Proxy."
         : "Encurtador de URLs de alta velocidade projetado com foco em arquitetura de infraestrutura moderna, orquestração com Docker Compose e Proxy Reverso Traefik.",
       repoLink: "https://github.com/jonaferreir4/Smaller",
+      image: "/images/smaller.gif",
       specs: {
         Engine: "Traefik Reverse Proxy",
         Container: "Docker Compose Infrastructure",
