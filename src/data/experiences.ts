@@ -46,19 +46,22 @@ export function getExperiences(locale: Locale = 'pt'): Experience[] {
         "React Hook Form",
         "Zod",
         "Axios",
-        "WebSockets (Pusher / Laravel Echo)"
+        "WebSockets (Pusher / Laravel Echo)",
+        "Vitest",
+        "Jest",
+        "Playwright"
       ],
       projects: [
         {
           name: isEn ? "Feature-First Architecture & Engineering Standards" : "Arquitetura Feature-First & Padrões de Engenharia",
           description: isEn
             ? [
-                "Defined and documented Feature-First (Vertical Slice) architecture standards and engineering rules (strict typing, test coverage, security), used across the engineering team and AI-assisted workflows.",
+                "Defined and documented Feature-First (Vertical Slice) architecture standards and engineering rules (strict typing, unit/integration testing with Vitest/Jest, E2E testing with Playwright, security), used across the engineering team and AI-assisted workflows.",
                 "Implemented ErrorBoundaries at critical application points and standardized secure authentication (interceptors, SameSite=Strict and Secure cookies).",
                 "Fixed a critical race condition bug in the ticket acceptance flow, implementing URL modal deep-linking replicated across the system."
               ]
             : [
-                "Defini e documentei os padrões de arquitetura Feature-First (Vertical Slice) e as regras de engenharia do time (tipagem estrita, cobertura de testes, convenções e segurança), usadas como referência por todo o time e por IAs no fluxo de desenvolvimento.",
+                "Defini e documentei os padrões de arquitetura Feature-First (Vertical Slice) e as regras de engenharia do time (tipagem estrita, cobertura de testes unitários/integração com Vitest/Jest, testes E2E com Playwright e segurança), usadas como referência por todo o time e por IAs no fluxo de desenvolvimento.",
                 "Implementei ErrorBoundary nos pontos críticos da aplicação e padronizei autenticação segura (interceptors, cookies SameSite=Strict e Secure).",
                 "Corrigi bug crítico de race condition no fluxo de aceite de tickets, implementando navegação por URL (deep-link de modais) replicado em todo o sistema."
               ],

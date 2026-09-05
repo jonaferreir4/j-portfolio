@@ -6,12 +6,13 @@ import {
   Server,
   Layers,
   Code,
-  Sparkles
+  Sparkles,
+  TestTube
 } from 'lucide-react';
 import { 
   SiDotnet, SiNodedotjs, SiSpring, SiPhp, SiPython,
   SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiShadcnui,
-  SiPostgresql, SiMysql, SiRedis, SiPrisma, SiZod, SiVitest,
+  SiPostgresql, SiMysql, SiRedis, SiPrisma, SiZod, SiVitest, SiJest,
   SiDocker, SiTraefikproxy, SiLinux, SiGit, SiGithubactions,
   SiPusher
 } from 'react-icons/si';
@@ -72,13 +73,13 @@ export function getTechnologies(locale: Locale = 'pt') {
       icon: <Container size={24} />,
       description: isEn ? "Infrastructure, testing, and quality engineering." : "Infraestrutura, testes e qualidade.",
       tools: [
+        { name: "Vitest / Jest", icon: <SiVitest /> },
+        { name: "Playwright (E2E)", icon: <TestTube size={14} /> },
         { name: "Docker", icon: <SiDocker /> },
         { name: "Traefik", icon: <SiTraefikproxy /> },
         { name: "AWS", icon: <FaAws /> },
         { name: "CI/CD", icon: <SiGithubactions /> },
-        { name: "Vitest / Jest", icon: <SiVitest /> },
-        { name: "Linux", icon: <SiLinux /> },
-        { name: "Git / GitHub", icon: <SiGit /> }
+        { name: "Linux / Git", icon: <SiGit /> }
       ]
     }
   ];
